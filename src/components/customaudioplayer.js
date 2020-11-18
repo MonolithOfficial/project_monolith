@@ -84,7 +84,7 @@ function CustomAudioPlayer() {
                     }}>
                     <div className="playlist-option-img-holder">
                         {/* <Img fluid={query.file.childImageSharp.fluid}></Img> */}
-                        <Image imageName={"wd_rgb.jpg"}/>
+                        {/* <Image imageName={"wd_rgb.jpg"}/> */}
                     </div>
                     <p>{nameArray[index]}</p>
                 </div>

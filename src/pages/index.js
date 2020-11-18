@@ -49,8 +49,12 @@ export default function IndexPage() {
   }
 `)
   // console.log(data)
-  const images = data.placeholderImage.edges;
-  // console.log(images);
+  const images = data.placeholderImage.edges? (
+    data.placeholderImage.edges
+  ) : (
+    null
+  )
+  console.log(images);
   console.log(translation_geo.heading_text_ge);
   
   return (
@@ -114,24 +118,24 @@ export default function IndexPage() {
             
             {/* <h1>{localStorage.getItem("activeLang")}</h1> */}
             <div className="sec-two-photo wd-1">
-              <Img fluid={images.find(n => {
+              {/* <Img fluid={images.find(n => {
                 return n.node.relativePath.includes("wd_cd_out.png")
-              }).node.childImageSharp.fluid}/>
+              }).node.childImageSharp.fluid}/> */}
             </div>
 
             
 
             <div className="sec-two-photo wd-2">
-            <Img fluid={images.find(n => {
+            {/* <Img fluid={images.find(n => {
                 return n.node.relativePath.includes("wd_cd_hd_back.png")
-              }).node.childImageSharp.fluid}/>
+              }).node.childImageSharp.fluid}/> */}
             </div>
 
 
             <div className="sec-two-photo wd-4">
-            <Img fluid={images.find(n => {
+            {/* <Img fluid={images.find(n => {
                 return n.node.relativePath.includes("wd_cd_front2.png")
-              }).node.childImageSharp.fluid}/>
+              }).node.childImageSharp.fluid}/> */}
             </div>
 
             <div className="sec-two-text wd-text">
@@ -261,9 +265,9 @@ export default function IndexPage() {
             <CustomAudioPlayer />
 
             <div className="sec-two-photo wd-3">
-            <Img fluid={images.find(n => {
+            {/* <Img fluid={images.find(n => {
                 return n.node.relativePath.includes("wd_cd_layered.png")
-              }).node.childImageSharp.fluid}/>
+              }).node.childImageSharp.fluid}/> */}
             </div>
           </section>
 

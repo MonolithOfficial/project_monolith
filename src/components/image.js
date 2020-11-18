@@ -36,9 +36,10 @@ const Image = (props) => {
   // if (!data?.placeholderImage?.childImageSharp?.fluid) {
   //   return <div>Picture not found</div>
   // }
-    return <Img fluid={data.placeholderImage.edges.find(n => {
-      return n.node.relativePath.includes(props.imageName)
-    }).node.childImageSharp.fluid} />
+    // return <Img fluid={data.placeholderImage.edges.find(n => {
+    //   return n.node.relativePath.includes(props.imageName)
+    // }).node.childImageSharp.fluid} />
+    return "kek"
   
 }
 
