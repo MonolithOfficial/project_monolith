@@ -1,0 +1,346 @@
+@import './variables.scss';
+
+body {
+    overflow-x: hidden;
+}
+
+
+.section-one {
+    width: 100%;
+    background-image: url("../images/sepia_two.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+
+    @media only screen and (max-width: 900px){
+        background-attachment: initial;
+    }
+    
+
+    & #extended-header-holder {
+        position: relative;
+        // height: 90vh;
+        height: 100%;
+        width: 100%;
+        // overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & .heading-text {
+            z-index: 1;
+            position: sticky;
+            display: block;
+            top: 0;
+            width: fit-content;
+            height: fit-content;
+            
+            & h1 {
+                // width: max-content;
+                position: relative;
+                font-size: 3vw;
+                font-weight: 400;
+                text-align: center;
+                color: white;
+                // align-self: center;
+                // justify-self: center;
+                line-height: 5rem;
+                letter-spacing: 0.5rem;
+
+                @media only screen and (max-width: 900px){
+                    // line-height: 2rem;
+                    letter-spacing: 0.3rem;
+                    font-size: 30px;
+                }
+
+                @media only screen and (max-height: 640px){
+                    margin-top: 64px;
+                    letter-spacing: 0.3rem;
+                    line-height: 1.5rem;
+                    font-size: 20px;
+                }
+
+                @media only screen and (max-width: 600px){
+                    line-height: 2rem;
+                }
+
+                & span:nth-child(1){
+                opacity: 1;
+                animation: fade-in ease 1s;
+
+                }
+                & span:nth-child(2){
+                opacity: 1;
+                animation: fade-in ease 1s;
+                }
+                & span:nth-child(3){
+                opacity: 1;
+                animation: fade-in ease 1.5s;
+                }
+                & span:nth-child(4){
+                opacity: 1;
+                animation: fade-in ease 1s;
+                }
+                & span:nth-child(5){
+                opacity: 1;
+                animation: fade-in ease 1.8s;
+                }
+                & span:nth-child(6){
+                opacity: 1;
+                animation: fade-in ease 1.4s;
+                }
+                & span:nth-child(7){
+                opacity: 1;
+                animation: fade-in ease 0.5s;
+                }
+                & span:nth-child(8){
+                opacity: 1;
+                animation: fade-in ease 1.9s;
+                }
+                & span:nth-child(9){
+                opacity: 1;
+                animation: fade-in ease 2s;
+                }
+                & span:nth-child(10){
+                opacity: 1;
+                animation: fade-in ease 1s;
+                }
+                & span:nth-child(11){
+                opacity: 1;
+                animation: fade-in ease 0.5s;
+                }
+                & span:nth-child(12){
+                opacity: 1;
+                animation: fade-in ease 1.2s;
+                }
+                }
+            }
+            
+    }
+}
+
+#section-two-wrapper {
+    background-image: url("../images/wd_black_white.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 200%;
+    // background-size: cover;
+    padding-top: 210px;
+
+    @media only screen and (max-width: 1350px){ 
+        background-attachment: initial;
+        background-size: cover;
+        padding-top: 0;
+    }
+
+
+}
+
+.section-two {
+    // height: 200vh;
+    // display: block;
+    
+    position: relative;
+    margin: 0 auto 0 auto;
+    max-width: 800px;
+    width: 90%;
+    height: fit-content;
+    padding: 80px 50px 50px 50px;
+    text-align: center;
+
+    @media only screen and (max-width: 1350px){
+        width: 100%;
+        // margin-top: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    @media only screen and (max-width: 800px) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    & .sec-two-photo {
+        z-index: 100;
+        position: absolute;
+
+        @media only screen and (max-width: 1350px){
+            display: none;
+        }
+    }
+
+    & .wd-1 {
+        top: -200px;
+        width: 700px;
+        right: calc(50% - 400px);
+    }
+
+    & .wd-2 {
+        top: 10%;
+        width: 320px;
+        right: -15vw;
+    }
+
+    & .wd-3 {
+        position: static;
+        // margin-top: 200px;
+        margin: auto;
+        width: 500px;
+        bottom: -200px;
+        // margin: 200px;
+    }
+
+    & .wd-4 {
+        top: 10%;
+        transform: rotate(30deg);
+        width: 350px;
+        left: -15vw;
+    }
+
+    & .wd-text {
+        text-indent: 15px;
+        background-color: $dlabGreyFaded;
+        color: $ghostwhite;
+        padding: 100px;
+        padding-bottom: 50px;
+        text-align: justify; // pretty important tbh
+        font-size: 14px;
+        line-height: 1.5em;
+
+        @media only screen and (max-width: 800px){
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        & h1 {
+            text-indent: 0;
+            text-align: center;
+        }
+
+        & .wd-paragraph {
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+        & #wd-text-collapsible {
+            max-height: 0px;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        button {
+            outline: none;
+            border: none;
+            background-color: rgba(0, 0, 0, 0);
+            transition: 0.3s;
+
+            &:hover {
+                background-color: $dlabGreyFaded;
+            }
+
+            & svg {
+                transform: rotate(-90deg);
+                justify-self: center;
+                pointer-events: none;
+                transition: transform 0.3s ease-out;
+
+            }
+        }
+
+        
+    }
+
+    & .now-playing-text {
+        padding: 10px 0 0 0;
+        margin: 0;
+        color: $ghostwhite;
+        background-color: $primaryBg;
+    }
+
+    & #playlist {
+        border-top: 50px dashed $dlabGreyFaded;
+
+        @media only screen and (max-width: 800px) {
+            border: none;
+        }
+
+        & .player-option {
+            height: 65px;
+            background-color: $primaryBg;
+            border-bottom: 1px solid $ghostwhite;
+            display: flex;
+            align-items: center;
+            // justify-content: center;
+            transition: 0.3s;
+
+            @media only screen and (max-width: 800px) {
+                height: 50px;
+                transition: none;
+            }
+
+            & .playlist-option-img-holder {
+                // flex: 1 0 20%;
+                justify-self: start;
+                width: 65px;
+                height: 65px;
+
+                @media only screen and (max-width: 800px) {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+            
+            &:nth-child(1){
+                border-top: 1px solid $ghostwhite;
+            }
+
+            &:hover {
+                background-color: $dlabGreyFaded;
+                cursor: pointer;
+
+                & p {
+                    color: $ghostwhite;
+                    letter-spacing: 0.5rem;
+
+                    @media only screen and (max-width: 800px){
+                        letter-spacing: normal;
+                    }
+                }
+            }
+
+            & p {
+                color: $secondaryGrey;
+                font-size: 30px;
+                transition: 0.3s;
+                pointer-events: none;
+
+                @media only screen and (max-width: 800px) {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        & .current-play {
+            background-color: $dlabGreyFaded;
+
+            p {
+                color: $ghostwhite;
+                letter-spacing: 0.5rem;
+
+                @media only screen and (max-width: 800px){
+                    letter-spacing: normal;
+                }
+            }
+        }
+    }
+
+    
+}
+
+

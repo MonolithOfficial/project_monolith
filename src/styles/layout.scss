@@ -1,0 +1,174 @@
+@import './variables.scss';
+
+@keyframes fade-in {
+  0% { opacity: 0 }
+  75% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Nanum Gothic', sans-serif;
+  background-color: $dlabGrey;
+}
+
+#main-header {
+  z-index: 40;
+  width: 100%;
+  background: none;
+  position: absolute;
+  height: 10vh;
+  // max-height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content:  flex-start;
+  align-items: center;
+  margin-top: 3rem;
+
+  @media only screen and (max-width: 800px){
+    display: none;
+  }
+
+  & #navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    & .logo-holder {
+      flex: 1;
+      align-self: center;
+      margin-left: 5rem;
+
+      @media only screen and (max-width: 800px) {
+        margin-left: 1rem;
+      }
+      
+      
+      & > div {
+        width: min-content;
+        position: relative;
+
+        & a {
+          padding: 0;
+          margin: 0;
+        }
+
+        & .overlay {
+          // background-image: url('../images/geo.png');
+          position: absolute;
+          height: 64px;
+          width: 100%;
+          background-color: none;
+          opacity: 0;
+          top: 0;
+          left: 0;
+          display: block;
+          content: "";
+          transition: opacity 0.5s;
+
+          &:hover {
+            opacity: 0.4;
+            cursor: pointer;
+          }
+      }
+      }
+
+      
+    }
+
+    & .navLinks {
+      flex: 1;  
+      display: flex;
+      list-style: none;
+      column-gap: 1rem;
+      margin-right: 5rem;
+      padding: 0;
+      justify-content: flex-end;
+      filter: drop-shadow(0.05em 0.05em $sepYellow);
+      // margin-right: 5rem;
+
+      @media only screen and (max-width: 800px) {
+        margin-right: 1rem;
+      }
+      
+      & li {
+
+        & a {
+          font-size: 1em;
+          color: $sepYellow;
+          text-decoration: none;
+          transition: 0.5s;
+          font-weight: 400;
+
+          &:hover {
+            color: $darkerYellow;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+#mobile-topnav {
+  z-index: 40;
+  width: 100%;
+  background-color: $darkerYellow;
+  position: absolute;
+  height: 64px;
+  display: none;
+  // max-height: 40%;
+
+  @media only screen and (max-width: 800px) {
+    display: block;
+  }
+
+  & .burger-icon {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & svg {
+      pointer-events: none;
+      transition: transform 0.3s ease-out;
+    }
+  }
+
+  & #dropdown-mobile-menu {
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.2s ease-out;
+
+    & ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      & li {
+        height: 50px;
+        border-bottom: 3px solid $primaryBg;
+        background-color: $darkerYellow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:nth-child(1) {
+          border-top: 3px solid $primaryBg
+        }
+
+        & a {
+          text-decoration: none;
+          color: $primaryBg;
+          font-size: 20px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
