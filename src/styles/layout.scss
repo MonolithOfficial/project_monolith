@@ -38,43 +38,41 @@ body {
     align-items: center;
     width: 100%;
 
-    & .logo-holder {
-      flex: 1;
+    & .language-dropdown {
+      // flex: 1;
       align-self: center;
       margin-left: 5rem;
+      width: 64px;
 
       @media only screen and (max-width: 800px) {
         margin-left: 1rem;
       }
       
-      
-      & > div {
-        width: min-content;
-        position: relative;
+      & .dropdown-content {
+        position: absolute;
+        overflow: hidden;
+        background-color: $primaryBg;
+        max-width: 64px;
+        height: 0px;
+        transition: height 0.3s ease;
 
-        & a {
-          padding: 0;
-          margin: 0;
-        }
-
-        & .overlay {
-          // background-image: url('../images/geo.png');
-          position: absolute;
-          height: 64px;
-          width: 100%;
-          background-color: none;
-          opacity: 0;
-          top: 0;
-          left: 0;
+        & img {
+          float: none;
+          box-sizing: border-box;
           display: block;
-          content: "";
-          transition: opacity 0.5s;
+          transition: opacity 0.3s ease;
+          
 
           &:hover {
-            opacity: 0.4;
             cursor: pointer;
+            opacity: 0.6;
           }
+        }
+
       }
+      
+      &:hover .dropdown-content {
+        height: 128px;
       }
 
       

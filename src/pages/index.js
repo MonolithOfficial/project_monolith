@@ -23,17 +23,31 @@ import translation_geo from '../translations/georgian.json'
 
 
 export default function IndexPage() {
-  const [activeLang, setActiveLang] = useState(localStorage.getItem("activeLang"))
+  const [activeLang, setActiveLang] = useState(() => {
+    if (typeof window !== 'undefined'){
+      return (
+        localStorage.getItem("activeLang")
+      )
+    }
+    else {
+      return "EN"
+    }
+  })
   useEffect(() => {
 
-    setActiveLang(localStorage.getItem("activeLang"))
+    if (typeof window !== 'undefined') {
+        setActiveLang(localStorage.getItem("activeLang"))
+    } else {
+        console.log('we are running on the server');
+    }
+    
 
   }, [])
   // translate("Darkroom")
 
   const data = useStaticQuery(graphql`
   query {
-    placeholderImage: allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+    placeholderImage: allFile(filter: { extension: {regex: "/(png)/"}, sourceInstanceName: { eq: "images" } }) {
       edges {
         node {
             relativePath
@@ -98,7 +112,7 @@ export default function IndexPage() {
                             <span>music </span><span>production, </span><br/>
                             <span>3D modeling </span>
                             <span>& web </span><br/><span>development </span>
-                            <span>studio</span>
+                            <span>vault</span>
                           </div>
                           
                         )
@@ -118,24 +132,24 @@ export default function IndexPage() {
             
             {/* <h1>{localStorage.getItem("activeLang")}</h1> */}
             <div className="sec-two-photo wd-1">
-              {/* <Img fluid={images.find(n => {
+              <Img fluid={images.find(n => {
                 return n.node.relativePath.includes("wd_cd_out.png")
-              }).node.childImageSharp.fluid}/> */}
+              }).node.childImageSharp.fluid}/>
             </div>
 
             
 
             <div className="sec-two-photo wd-2">
-            {/* <Img fluid={images.find(n => {
+            <Img fluid={images.find(n => {
                 return n.node.relativePath.includes("wd_cd_hd_back.png")
-              }).node.childImageSharp.fluid}/> */}
+              }).node.childImageSharp.fluid}/>
             </div>
 
 
             <div className="sec-two-photo wd-4">
-            {/* <Img fluid={images.find(n => {
+            <Img fluid={images.find(n => {
                 return n.node.relativePath.includes("wd_cd_front2.png")
-              }).node.childImageSharp.fluid}/> */}
+              }).node.childImageSharp.fluid}/>
             </div>
 
             <div className="sec-two-text wd-text">
@@ -265,9 +279,9 @@ export default function IndexPage() {
             <CustomAudioPlayer />
 
             <div className="sec-two-photo wd-3">
-            {/* <Img fluid={images.find(n => {
+            <Img fluid={images.find(n => {
                 return n.node.relativePath.includes("wd_cd_layered.png")
-              }).node.childImageSharp.fluid}/> */}
+              }).node.childImageSharp.fluid}/>
             </div>
           </section>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import { useStaticQuery, graphql } from "gatsby";
-import Image from '../components/image';
+import Img from 'gatsby-image';
 
 // Styles
 import 'react-h5-audio-player/src/styles.scss';
@@ -63,7 +63,7 @@ function CustomAudioPlayer() {
             
     //     }
     // `)
-    console.log(query)
+    console.log(query.bg)
     // console.log(query.allFile.edges[0].node);
     const nameArray = ["Memories", "As Of Right Now", "Ominous", "Break Your Mind", "Severity Of Destiny", "Help, Kill",
     "Evildoer's Dance", "Prying Eyes", "Devil's Hand", "Collapsing Structure", "Watermelon's Symphony", "The Impact",
@@ -78,13 +78,11 @@ function CustomAudioPlayer() {
                     for (let i = 0; i < playerOptions.length; i++){
                         playerOptions[i].classList.remove('current-play')
                     }
-                    {/* console.log(e.target.childNodes[0].innerText) */}
                     setCurrentTrack(e.target.childNodes[1].innerText)
                     e.target.classList.add('current-play')
                     }}>
                     <div className="playlist-option-img-holder">
-                        {/* <Img fluid={query.file.childImageSharp.fluid}></Img> */}
-                        {/* <Image imageName={"wd_rgb.jpg"}/> */}
+                        <Img fluid={query.bg.childImageSharp.fluid}/>
                     </div>
                     <p>{nameArray[index]}</p>
                 </div>
