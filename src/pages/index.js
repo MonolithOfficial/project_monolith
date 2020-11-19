@@ -8,7 +8,7 @@ import SEO from "../components/seo"
 import CustomAudioPlayer from "../components/customaudioplayer"
 // import '../styles/swiper.scss'
 import '../styles/index.scss'
-import 'react-h5-audio-player/src/styles.scss';
+// import 'react-h5-audio-player/src/styles.scss';
 
 import translation_geo from '../translations/georgian.json'
 
