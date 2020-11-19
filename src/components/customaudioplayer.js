@@ -4,12 +4,12 @@ import { useStaticQuery, graphql } from "gatsby";
 import Img from 'gatsby-image';
 
 // Styles
-import 'react-h5-audio-player/src/styles.scss';
+import '../styles/audioplayer.scss';
 
 import {translate} from '../helpers/translate.js'
 
 // WORLDLINE;DEAD tracks
-// import memories from '../audio/1_memories.mp3';
+import memories from '../audio/wd/1_memories.mp3';
 // import as_of_right_now from '../audio/as_of_right_now.mp3';
 // import ominous from '../audio/ominous.mp3';
 // import break_your_mind from '../audio/break_your_mind.mp3';
@@ -28,7 +28,8 @@ import {translate} from '../helpers/translate.js'
 
 function CustomAudioPlayer() {
 
-    const [track, setTrack] = useState("/static/7a83b3ca96831316584345facca20b11/1_memories.mp3")
+    // const [track, setTrack] = useState("/static/7a83b3ca96831316584345facca20b11/1_memories.mp3")
+    const [track, setTrack] = useState(memories)
     const [currentTrack, setCurrentTrack] = useState("Memories");
     const [trackState, setTrackState] = useState(`${translate("Paused")} - `);
     
