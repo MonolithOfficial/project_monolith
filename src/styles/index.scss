@@ -341,8 +341,39 @@ body {
             }
         }
     }
+  
+}
 
-    
+.section-three {
+    height: 101vh;
+    position: relative;
+
+    & .pillarImgLeft, .pillarImgRight {
+        max-width: 291px;
+        max-height: 356.5px;
+        width: 291px;
+        height: 356.5px;        
+    }
+
+    & .pillarImgLeft {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        @media only screen and (max-width: 800px){
+            left: 50;
+        }
+    }
+
+    & .pillarImgRight {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        @media only screen and (max-width: 800px){
+            display: none;
+        }
+    }
 }
 
 

@@ -286,11 +286,19 @@ export default function IndexPage() {
               }).node.childImageSharp.fluid}/>
             </div>
           </section>
-
-          <section className="section section-three">
-              
-          </section>
         </div>
+        <section className="section section-three">
+              <div className="imageHolder pillarImgLeft">
+                <Img fluid={images.find(n => {
+                  return n.node.relativePath.includes("dlab_logo_render_orange.png")
+                }).node.childImageSharp.fluid}/>
+              </div>
+              <div className="imageHolder pillarImgRight">
+                <Img fluid={images.find(n => {
+                  return n.node.relativePath.includes("dlab_logo_render_orange_flp.png")
+                }).node.childImageSharp.fluid}/>
+              </div>
+        </section>
         
       {/* </Parallax> */}
 
