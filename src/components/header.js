@@ -38,7 +38,7 @@ const Header = ({ siteTitle }) => (
                 
               {/* }}></div> */}
               
-                <div class="dropdown-content">
+                <div className="dropdown-content">
                   <img src={geo_img} alt="GEO"
                   onClick={(e) => {
                       if (typeof window !== 'undefined') {

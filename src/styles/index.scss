@@ -7,7 +7,7 @@ body {
 
 .section-one {
     width: 100%;
-    background-image: url("../images/sepia_two.jpg");
+    background-image: url("../images/combined_wp_mid.png");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -16,6 +16,8 @@ body {
 
     @media only screen and (max-width: 900px){
         background-attachment: initial;
+        background-image: url("../images/monolith_pfp_high_desert.png");
+        background-size: cover;
     }
     
 
@@ -40,13 +42,13 @@ body {
             & h1 {
                 // width: max-content;
                 position: relative;
-                font-size: 3vw;
+                font-size: 2vw;
                 font-weight: 400;
                 text-align: center;
                 color: white;
                 // align-self: center;
                 // justify-self: center;
-                line-height: 5rem;
+                line-height: 1rem;
                 letter-spacing: 0.5rem;
 
                 @media only screen and (max-width: 900px){

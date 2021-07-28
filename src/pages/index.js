@@ -69,7 +69,7 @@ export default function IndexPage() {
     null
   )
   console.log(images);
-  console.log(translation_geo.heading_text_ge);
+  // console.log(translation_geo.heading_text_ge);
   
   return (
     <Layout>
@@ -96,23 +96,25 @@ export default function IndexPage() {
                       if (activeLang === "GEO"){
                         return <div>
                            {/* {translation_geo.heading_text_ge} */}
-                            <span>{translation_geo.heading_text_ge[0]}</span><span>{translation_geo.heading_text_ge[1]}</span><br/>
-                            <span>{translation_geo.heading_text_ge[2]} </span><span>{translation_geo.heading_text_ge[3]}</span>
+                            <span>{translation_geo.heading_text_ge[0]}</span><span>{translation_geo.heading_text_ge[1]}</span><hr/>
+
+                            {/* <span>{translation_geo.heading_text_ge[2]} </span><span>{translation_geo.heading_text_ge[3]}</span>
                             <span>{translation_geo.heading_text_ge[4]} </span><br /><span>{translation_geo.heading_text_ge[5]}</span><br/>
                             <span>{translation_geo.heading_text_ge[6]}</span>
                             <span>{translation_geo.heading_text_ge[7]}</span><br/><span>{translation_geo.heading_text_ge[8]}</span>
-                            <span>{translation_geo.heading_text_ge[9]}</span>
+                            <span>{translation_geo.heading_text_ge[9]}</span> */}
                         </div>
                       }
                       else {
                         return (
                           <div>
-                            <span>Project </span><span>Monolith </span><br/>
-                            <span>is </span><span>a </span>
+                            <span>Project </span><span>Monolith </span><hr/>
+                            <span style={{lineHeight: "2rem"}}>Is the name of a<br/> musician and a studio</span>
+                            {/* <span>is </span><span>a </span>
                             <span>music </span><span>production, </span><br/>
                             <span>3D modeling </span>
                             <span>& web </span><br/><span>development </span>
-                            <span>vault</span>
+                            <span>vault</span> */}
                           </div>
                           
                         )
