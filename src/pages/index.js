@@ -109,7 +109,7 @@ export default function IndexPage() {
                         return (
                           <div>
                             <span>Project </span><span>Monolith </span><hr/>
-                            <span style={{lineHeight: "2rem"}}>Is the name of a<br/> musician and a studio</span>
+                            <span style={{lineHeight: "2rem"}}>Presented By<br/>Darkroom Member 002</span>
                             {/* <span>is </span><span>a </span>
                             <span>music </span><span>production, </span><br/>
                             <span>3D modeling </span>

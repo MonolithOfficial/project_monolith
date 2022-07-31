@@ -7,7 +7,7 @@ body {
 
 .section-one {
     width: 100%;
-    background-image: url("../images/combined_wp_mid.png");
+    background-image: url("../images/guitars_combined.png");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -16,7 +16,7 @@ body {
 
     @media only screen and (max-width: 900px){
         background-attachment: initial;
-        background-image: url("../images/monolith_pfp_high_desert.png");
+        background-image: url("../images/m_guit_5_inverted.jpg");
         background-size: cover;
     }
     
@@ -38,6 +38,8 @@ body {
             top: 0;
             width: fit-content;
             height: fit-content;
+            mix-blend-mode: difference;
+
             
             & h1 {
                 // width: max-content;
@@ -50,6 +52,8 @@ body {
                 // justify-self: center;
                 line-height: 1rem;
                 letter-spacing: 0.5rem;
+                // background-color: rgba(0, 0, 0, 0.7);
+                // padding: 20px;
 
                 @media only screen and (max-width: 900px){
                     line-height: 2rem;
