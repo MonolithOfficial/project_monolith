@@ -166,10 +166,10 @@ export default function IndexPage() {
                       }
                       else {
                         return (
-                          `This album was originally planned to be released under the title of “85” somewhere around January 2017,
-                          but it was halted due to the lack of production value. Some tracks including
+                          `Worldline;Dead album was originally planned to be released as “85” somewhere around January 2017,
+                          but it was halted due to the lack of production value. A few tracks including
                           “Blood”, “Fg_32”, “Don’t Belong”, “Dirt” and “If I Disappear” were dropped
-                          from the album never to be recovered. ‘Less? `
+                          from the album never to be recovered.`
                         )
                       }
                   })()}
