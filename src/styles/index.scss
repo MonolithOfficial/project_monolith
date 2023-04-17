@@ -4,6 +4,14 @@ body {
     overflow-x: hidden;
 }
 
+.releaseDate {
+    font-size: 10px;
+    padding: 0;
+    text-align: center;
+    margin-top: 0;
+    font-weight: 100;
+}
+
 
 .section-one {
     width: 100%;
@@ -128,7 +136,7 @@ body {
 }
 
 #section-two-wrapper {
-    background-image: url("../images/wd_black_white.jpg");
+    background-image: url("../images/wd_black_white_darkened.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -209,7 +217,8 @@ body {
     & .wd-text {
         text-indent: 15px;
         background-color: $dlabGreyFaded;
-        color: $ghostwhite;
+        
+        color: rgba(255, 255, 255, 0.8);
         padding: 100px;
         padding-bottom: 50px;
         text-align: justify; // pretty important tbh
@@ -261,81 +270,57 @@ body {
 
         
     }
+}
 
-    & .now-playing-text {
-        padding: 10px 0 0 0;
-        margin: 0;
-        color: $ghostwhite;
-        background-color: $primaryBg;
+.now-playing-text {
+    padding: 10px 0 0 0;
+    margin: 0;
+    color: $ghostwhite;
+    background-color: $primaryBg;
+}
+
+#playlist {
+    border-top: 50px dashed $dlabGreyFaded;
+
+    @media only screen and (max-width: 800px) {
+        border: none;
     }
 
-    & #playlist {
-        border-top: 50px dashed $dlabGreyFaded;
+    & .player-option {
+        height: 65px;
+        background-color: $primaryBg;
+        border-bottom: 1px solid $ghostwhite;
+        display: flex;
+        align-items: center;
+        // justify-content: center;
+        transition: 0.3s;
 
         @media only screen and (max-width: 800px) {
-            border: none;
+            height: 50px;
+            transition: none;
         }
 
-        & .player-option {
+        & .playlist-option-img-holder {
+            // flex: 1 0 20%;
+            justify-self: start;
+            width: 65px;
             height: 65px;
-            background-color: $primaryBg;
-            border-bottom: 1px solid $ghostwhite;
-            display: flex;
-            align-items: center;
-            // justify-content: center;
-            transition: 0.3s;
 
             @media only screen and (max-width: 800px) {
+                width: 50px;
                 height: 50px;
-                transition: none;
-            }
-
-            & .playlist-option-img-holder {
-                // flex: 1 0 20%;
-                justify-self: start;
-                width: 65px;
-                height: 65px;
-
-                @media only screen and (max-width: 800px) {
-                    width: 50px;
-                    height: 50px;
-                }
-            }
-            
-            &:nth-child(1){
-                border-top: 1px solid $ghostwhite;
-            }
-
-            &:hover {
-                background-color: $dlabGreyFaded;
-                cursor: pointer;
-
-                & p {
-                    color: $ghostwhite;
-                    letter-spacing: 0.5rem;
-
-                    @media only screen and (max-width: 800px){
-                        letter-spacing: normal;
-                    }
-                }
-            }
-
-            & p {
-                color: $secondaryGrey;
-                font-size: 30px;
-                transition: 0.3s;
-                pointer-events: none;
-
-                @media only screen and (max-width: 800px) {
-                    font-size: 20px;
-                }
             }
         }
+        
+        &:nth-child(1){
+            border-top: 1px solid $ghostwhite;
+        }
 
-        & .current-play {
+        &:hover {
             background-color: $dlabGreyFaded;
+            cursor: pointer;
 
-            p {
+            & p {
                 color: $ghostwhite;
                 letter-spacing: 0.5rem;
 
@@ -344,13 +329,106 @@ body {
                 }
             }
         }
+
+        & p {
+            color: $secondaryGrey;
+            font-size: 30px;
+            transition: 0.3s;
+            pointer-events: none;
+
+            @media only screen and (max-width: 800px) {
+                font-size: 20px;
+            }
+        }
     }
-  
+
+    & .current-play {
+        background-color: $dlabGreyFaded;
+
+        p {
+            color: $ghostwhite;
+            letter-spacing: 0.5rem;
+
+            @media only screen and (max-width: 800px){
+                letter-spacing: normal;
+            }
+        }
+    }
+}
+
+#section-three-wrapper {
+    background-image: url("../images/tsminda_giorgi.jpeg");
+    background-attachment: fixed;
+    background-position: left;
+    background-repeat: no-repeat;
+    // background-size: 200%;
+    background-size: contain;
+    padding-top: 100px;
 }
 
 .section-three {
     height: 101vh;
     position: relative;
+
+    position: relative;
+    margin: 0 auto 0 auto;
+    max-width: 800px;
+    width: 90%;
+    height: fit-content;
+    padding: 80px 50px 50px 50px;
+    text-align: center;
+
+    @media only screen and (max-width: 1350px){
+        width: 100%;
+        // margin-top: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    @media only screen and (max-width: 800px) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    & .rencontre-text {
+        text-indent: 15px;
+        background-color: rgba(0, 0, 0, 0.4);
+        color: $ghostwhite;
+        padding: 100px;
+        padding-top: 20px;
+        padding-bottom: 50px;
+        text-align: justify; // pretty important tbh
+        font-size: 14px;
+        line-height: 1.5em;
+
+        & h1 {
+            text-indent: 0;
+            text-align: center;
+        }
+
+        & h1, p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        & .rencontre-paragraph {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media only screen and (max-width: 800px){
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        
+    }
+
+    & .rencontreBanner {
+        height: 200px;
+        background-image: url('../images/Rencontre_front_cover.png');
+        background-position: center;
+        background-size: cover;
+    }
 
     & .pillarImgLeft, .pillarImgRight {
         max-width: 291px;
@@ -377,6 +455,18 @@ body {
         @media only screen and (max-width: 800px){
             display: none;
         }
+    }
+}
+
+#footer {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    & p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 10px;
     }
 }
 

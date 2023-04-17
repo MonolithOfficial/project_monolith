@@ -86,7 +86,8 @@ body {
       margin-right: 5rem;
       padding: 0;
       justify-content: flex-end;
-      filter: drop-shadow(0.05em 0.05em $sepYellow);
+      // background-color: $dlabGreyFaded;
+      // filter: drop-shadow(0.05em 0.05em $sepYellow);
       // margin-right: 5rem;
 
       @media only screen and (max-width: 800px) {
@@ -94,16 +95,20 @@ body {
       }
       
       & li {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        padding: 5px 10px;
 
         & a {
           font-size: 1em;
-          color: $sepYellow;
+          // color: $sepYellow;
+          color: $ghostwhitefaded;  
           text-decoration: none;
           transition: 0.5s;
           font-weight: 400;
 
           &:hover {
-            color: $darkerYellow;
+            color: red;
           }
         }
       }
@@ -115,7 +120,7 @@ body {
 #mobile-topnav {
   z-index: 40;
   width: 100%;
-  background-color: $darkerYellow;
+  background-color: rgba(128, 128, 128, 0.9);
   position: absolute;
   height: 64px;
   display: none;
@@ -150,7 +155,7 @@ body {
       & li {
         height: 50px;
         border-bottom: 3px solid $primaryBg;
-        background-color: $darkerYellow;
+        background-color: rgba(128, 128, 128, 0.9);
         display: flex;
         justify-content: center;
         align-items: center;

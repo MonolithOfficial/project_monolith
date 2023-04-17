@@ -6,6 +6,8 @@ import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import CustomAudioPlayer from "../components/customaudioplayer"
+import CustomAudioPlayerRencontre from "../components/customaudioplayerrencontre"
+
 // import '../styles/swiper.scss'
 import '../styles/index.scss'
 // import 'react-h5-audio-player/src/styles.scss';
@@ -109,7 +111,7 @@ export default function IndexPage() {
                         return (
                           <div>
                             <span>Project </span><span>Monolith </span><hr/>
-                            <span style={{lineHeight: "2rem"}}>Presented By<br/>Darkroom Member 002</span>
+                            {/* <span style={{lineHeight: "2rem"}}>Presented By<br/>Darkroom Member 002</span> */}
                             {/* <span>is </span><span>a </span>
                             <span>music </span><span>production, </span><br/>
                             <span>3D modeling </span>
@@ -155,7 +157,7 @@ export default function IndexPage() {
             </div>
 
             <div className="sec-two-text wd-text">
-            <h1>Worldline;Dead</h1>
+            <h1>Worldline;Dead<span className='releaseDate'> 31/07/2018</span></h1>
 
               <div className="wd-paragraph">
 
@@ -166,10 +168,7 @@ export default function IndexPage() {
                       }
                       else {
                         return (
-                          `Worldline;Dead album was originally planned to be released as “85” somewhere around January 2017,
-                          but it was halted due to the lack of production value. A few tracks including
-                          “Blood”, “Fg_32”, “Don’t Belong”, “Dirt” and “If I Disappear” were dropped
-                          from the album never to be recovered.`
+                          `“Worldline;Dead” started out as an individual track, “Prologue One” in late 2013. The last track heard on this album is that very recording. A halt then followed, leaving the album shelved until early 2017. `
                         )
                       }
                   })()}
@@ -181,11 +180,7 @@ export default function IndexPage() {
                       }
                       else {
                         return (
-                          `The intro to “Severity of Destiny” is a reference to a 1997 anime adaptation of Kentaro 
-                          Miura’s “Berserk” manga series.
-                          “The Impact” title refers to an event similar to an armageddon that’s described in “Neon
-                          Genesis: Evangelion” which is also referred
-                          to as “the impact”. `
+                          `A sunny view of a cloud hanging over a mountain seen on the back of “Worldline;Dead” CD signifies a feeling specific to anyone hearing the tracks. A darkened space with a ray of light in the distance is seen differently by everyone. Both sides of the CD have been altered for this site.`
                         )
                       }
                   })()}
@@ -197,9 +192,7 @@ export default function IndexPage() {
                       }
                       else {
                         return (
-                          `It 
-                          happened more than once in the anime, so it’d only be logical to expect a sequel to this track.
-                          Some guitars on the album are real, some are not. `
+                          `Why do things that happen, happen? “Worldline;Dead” just happened and its signature sound was lost forever. The very first track published by Monolith after the release of “Worldline;Dead” sounded nothing like the first album. Nothing published ever since did.`
                         )
                       }
                   })()}
@@ -227,51 +220,18 @@ export default function IndexPage() {
                 </button>
 
                 <div id="wd-text-collapsible">
-                  <p>
-                    {(() => {
-                      if (activeLang === "GEO") {
-                        return translation_geo.wd_p_4_geo.toString()
-                      }
-                      else {
-                        return (
-                          `Project Monolith was initially named “Webcrawler Torso”. The name change happened in 2014. 
-                          “Watermelon’s Symphony” is a story about a man who
-                          liked to
-                          water
-                          watermelons. `
-                        )
-                      }
-                    })()}
-                  </p>
-                  
-                  <p>
+                  <p style={{marginTop: "0px"}}>
                     {(() => {
                         if (activeLang === "GEO") {
-                          return translation_geo.wd_p_5_geo.toString()
+                          return translation_geo.wd_p_4_geo.toString()
                         }
                         else {
                           return (
-                            `The first ever track produced by Monolith is actually the last track on this album - “Worldline;Dead”. 
-                            It was recorded in late 2013. At the time I had’t yet watched it, but I still like to cite Steins;Gate 
-                            as the main influence. The track was originally titled “Prologue One”, but after watchingSteins;Gate in 
-                            2015, it sort of gained a new purpose and the meaning behind it changed. I substituted the title for 
-                            “Worldline;Dead”, hence the album title.
-
-                            At the time of creating this album, I wasn’t really in the know on a lot of things both musically
-                            and structurally. Just
-                            a newb. I like to thank Yesswear and Tsuki, fellow Darkroom members, for they’ve 
-                            helped me develop as a producer and composer. Their styles are far from similar to 
-                            mine, but there’s nothing better than to have peers criticize your work in an 
-                            honest and unbiased way. I want to thank JustVasili for designing the front 
-                            cover of “Worldline;Dead” and for being a major chess piece in the Dlab game. 
-
-                            Anyway, I hope you like this, just a chat, truly yours, this is the 02, this is Monolith. `
+                            `It's been said that Worldline;Dead has a secret 14th track.`
                           )
                         }
                     })()}
                   </p>
-
-                  
                 </div>
                 
               </div>  
@@ -287,18 +247,74 @@ export default function IndexPage() {
             </div>
           </section>
         </div>
-        <section className="section section-three">
-              <div className="imageHolder pillarImgLeft">
-                <Img fluid={images.find(n => {
-                  return n.node.relativePath.includes("dlab_logo_render_orange.png")
-                }).node.childImageSharp.fluid}/>
+        <div id="section-three-wrapper">
+          <section className="section section-three">
+            <div className='rencontreBanner'>
+            {/* <Img fluid={images.find(n => {
+                return n.node.relativePath.includes("Rencontre_front_cover.png")
+              }).node.childImageSharp.fluid}/> */}
+            </div>
+            <div className="sec-three-text rencontre-text">
+              <div className="rencontre-paragraph">
+                <h1>Rencontre<span className='releaseDate'> 23/03/2023</span></h1>
+                <p style={{marginBottom: "0px"}}>
+                    {(() => {
+                        if (activeLang === "GEO") {
+                          return translation_geo.renc_p1_geo.toString()
+                        }
+                        else {
+                          return (
+                            `"Rencontre" resembles an encouter with someone or something, be it familiar or not. What is a minotaur, or a marionette if not associations in our minds. What does Korvis even stand for? The listener holds the power not to guess, but to connect. What would a sarcophagus mean to you?`
+                          )
+                        }
+                    })()}
+                  </p>
+
+                  <p style={{marginBottom: "0px"}}>
+                    {(() => {
+                        if (activeLang === "GEO") {
+                          return translation_geo.renc_p2_geo.toString()
+                        }
+                        else {
+                          return (
+                            `Moving on from "Worldline;Dead", this album proceeds to savagely stab its past into inexistence. Rising up from the flames of over 2 hours worth of demos, whilst being only 23 minutes long, roughly 3 times shorter than its predecessor, "Rencontre" sets out for a faster impression.`
+                          )
+                        }
+                    })()}
+                  </p>
+
+                  {/* <p style={{marginBottom: "0px"}}>
+                    {(() => {
+                        if (activeLang === "GEO") {
+                          return translation_geo.renc_p3_geo.toString()
+                        }
+                        else {
+                          return (
+                            `Narikala and Caucasus are two real locations giving "Rencontre" a sense of confinement, its home. That which is the origin of power.`
+                          )
+                        }
+                    })()}
+                  </p> */}
               </div>
-              <div className="imageHolder pillarImgRight">
-                <Img fluid={images.find(n => {
-                  return n.node.relativePath.includes("dlab_logo_render_orange_flp.png")
-                }).node.childImageSharp.fluid}/>
-              </div>
-        </section>
+            </div>
+            
+            <CustomAudioPlayerRencontre />
+                {/* <div className="imageHolder pillarImgLeft">
+                  <Img fluid={images.find(n => {
+                    return n.node.relativePath.includes("dlab_logo_render_orange.png")
+                  }).node.childImageSharp.fluid}/>
+                </div>
+                <div className="imageHolder pillarImgRight">
+                  <Img fluid={images.find(n => {
+                    return n.node.relativePath.includes("dlab_logo_render_orange_flp.png")
+                  }).node.childImageSharp.fluid}/>
+                </div> */}
+          </section>
+          <footer id='footer'>
+            <p>Created by Darkroom Member 002</p>
+
+          </footer>
+        </div>
         
       {/* </Parallax> */}
 
