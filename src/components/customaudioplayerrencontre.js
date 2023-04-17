@@ -9,7 +9,7 @@ import '../styles/audioplayer.scss';
 import {translate} from '../helpers/translate.js'
 
 // WORLDLINE;DEAD tracks
-import narikala from '../audio/rencontre/narikala.mp3';
+import narikala from '../audio/rencontre/1_narikala.mp3';
 // import as_of_right_now from '../audio/as_of_right_now.mp3';
 // import ominous from '../audio/ominous.mp3';
 // import break_your_mind from '../audio/break_your_mind.mp3';
