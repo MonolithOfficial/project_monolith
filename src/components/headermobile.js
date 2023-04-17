@@ -29,9 +29,9 @@ function HeaderMobile() {
             <div id="dropdown-mobile-menu" height="0px">
                 <ul>
                 {/* <li><Link to="/">{translate("About")}</Link></li> */}
-                <li><Link to="/">{translate("YouTube")}</Link></li>
-                <li><Link to="/">{translate("Bandcamp")}</Link></li>
-                <li><Link to="/">{translate("Darkroom")}</Link></li>
+                <li><Link to="https://www.youtube.com/channel/UC4IrptxENHzpZiOlIGSgPLQ" target="blank">{translate("YouTube")}</Link></li>
+                <li><Link to="https://monolithworldline.bandcamp.com/" target="blank">{translate("Bandcamp")}</Link></li>
+                <li><Link to="https://darkroomlab.net" target="blank">{translate("Darkroom")}</Link></li>
                 </ul>
                 
             </div>
