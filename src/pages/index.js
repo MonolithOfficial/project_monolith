@@ -311,7 +311,7 @@ export default function IndexPage() {
                 </div> */}
           </section>
           <footer id='footer'>
-            <p>Created by Darkroom Member 002</p>
+            <p>Created by Darkroom | Project Monolith</p>
 
           </footer>
         </div>
