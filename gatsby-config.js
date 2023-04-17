@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Project Monolith Portfolio Website`,
-    description: `This is a portfolio website for Project Monolith, a multimedia endaevor by Tsotne Aburjania. It encompasses web development, music production and 3D rendering.`,
-    author: `@tsotneaburjania`,
+    title: `Project Monolith`,
+    description: `This is a Project Monolith official website.`,
+    author: `@monolithofficial`,
   },
   plugins: [
     `gatsby-transformer-sharp`,
