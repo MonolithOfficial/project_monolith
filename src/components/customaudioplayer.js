@@ -64,7 +64,7 @@ function CustomAudioPlayer() {
             
     //     }
     // `)
-    console.log(query)
+    // console.log(query)
     // console.log(query.allFile.edges[0].node);
     const nameArray = ["Memories", "As Of Right Now", "Ominous", "Break Your Mind", "Severity Of Destiny", "Help, Kill",
     "Evildoer's Dance", "Prying Eyes", "Devil's Hand", "Collapsing Structure", "Watermelon's Symphony", "The Impact",

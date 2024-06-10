@@ -7,6 +7,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import CustomAudioPlayer from "../components/customaudioplayer"
 import CustomAudioPlayerRencontre from "../components/customaudioplayerrencontre"
+import CustomAudioPlayerASM from "../components/customaudioplayerasm"
 
 // import '../styles/swiper.scss'
 import '../styles/index.scss'
@@ -25,6 +26,7 @@ import translation_geo from '../translations/georgian.json'
 
 
 export default function IndexPage() {
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const [activeLang, setActiveLang] = useState(() => {
     if (typeof window !== 'undefined'){
       return (
@@ -32,7 +34,12 @@ export default function IndexPage() {
       )
     }
     else {
-      return "EN"
+      if (!(timezone == "Asia/Baku")){
+        return "ENG"
+      }
+      else {
+        return "GEO"
+      }
     }
   })
   useEffect(() => {
@@ -70,7 +77,7 @@ export default function IndexPage() {
   ) : (
     null
   )
-  console.log(images);
+  // console.log(images);
   // console.log(translation_geo.heading_text_ge);
   
   return (
@@ -201,7 +208,7 @@ export default function IndexPage() {
                 <button onClick={(e) => {
                     let collapsible = e.target.nextElementSibling
                     let arrow = e.target.firstChild
-                    console.log(collapsible)
+                    // console.log(collapsible)
                     if (collapsible.style.maxHeight !== "1000px") {
                         collapsible.style.maxHeight = "1000px"
                         arrow.style.transform = "rotate(90deg)"
@@ -310,9 +317,72 @@ export default function IndexPage() {
                   }).node.childImageSharp.fluid}/>
                 </div> */}
           </section>
+        </div>
+        <div id="section-four-wrapper">
+          <section className="section section-four">
+            <div className='asmBanner'>
+            {/* <Img fluid={images.find(n => {
+                return n.node.relativePath.includes("Rencontre_front_cover.png")
+              }).node.childImageSharp.fluid}/> */}
+            </div>
+            <div className="sec-three-text asm-text">
+              <div className="asm-paragraph">
+                <h1>A System Message<span className='releaseDate'> 23/04/2023</span></h1>
+                <p style={{marginBottom: "0px"}}>
+                    {(() => {
+                        if (activeLang === "GEO") {
+                          return translation_geo.asm_p1_geo.toString()
+                        }
+                        else {
+                          return (
+                            `"A System Message" can be an system update notification that you receive on your smartphone. Usually it's formatted in a way so that you cannot unsee it. What if the content of this notification isn't exaclty about an update, a bit more ominous than that, it is a WARNING.`
+                          )
+                        }
+                    })()}
+                  </p>
+
+                  <p style={{marginBottom: "0px"}}>
+                    {(() => {
+                        if (activeLang === "GEO") {
+                          return translation_geo.asm_p2_geo.toString()
+                        }
+                        else {
+                          return (
+                            `Be sure to check your System Messages.`
+                          )
+                        }
+                    })()}
+                  </p>
+
+                  {/* <p style={{marginBottom: "0px"}}>
+                    {(() => {
+                        if (activeLang === "GEO") {
+                          return translation_geo.renc_p3_geo.toString()
+                        }
+                        else {
+                          return (
+                            `Narikala and Caucasus are two real locations giving "Rencontre" a sense of confinement, its home. That which is the origin of power.`
+                          )
+                        }
+                    })()}
+                  </p> */}
+              </div>
+            </div>
+            
+            <CustomAudioPlayerASM />
+                {/* <div className="imageHolder pillarImgLeft">
+                  <Img fluid={images.find(n => {
+                    return n.node.relativePath.includes("dlab_logo_render_orange.png")
+                  }).node.childImageSharp.fluid}/>
+                </div>
+                <div className="imageHolder pillarImgRight">
+                  <Img fluid={images.find(n => {
+                    return n.node.relativePath.includes("dlab_logo_render_orange_flp.png")
+                  }).node.childImageSharp.fluid}/>
+                </div> */}
+          </section>
           <footer id='footer'>
             <p>Created by Darkroom | Project Monolith</p>
-
           </footer>
         </div>
         

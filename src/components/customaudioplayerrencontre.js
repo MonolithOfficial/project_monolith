@@ -64,7 +64,7 @@ function CustomAudioPlayerRencontre() {
             
     //     }
     // `)
-    console.log(query)
+    // console.log(query)
     // console.log(query.allFile.edges[0].node);
     const nameArray = ["Narikala (Intro)", "Korvis the Robot", "Sarcophagus", "Monumentality", "Marionette", "Cryptic",
     "Minotaur", "Caucasus (Outro)"];
