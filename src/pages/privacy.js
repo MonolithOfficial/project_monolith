@@ -48,7 +48,7 @@ const PrivacyPage = () => (
       <p>If this policy changes materially, the updated version will be published at the same URL with a revised date at the top. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
 
       <h2>7. Contact</h2>
-      <p>Questions about this policy can be directed to: <a href="mailto:business.projectmonolith@gmail.com">business.projectmonolith@gmail.com</a></p>
+      <p>Questions about this policy can be directed to: <a href="mailto:business.projectmonolith@protonmail.com">business.projectmonolith@protonmail.com</a></p>
 
       <footer className="pageFooter">
         &copy; 2026 Project Monolith. Monotune is provided as-is with no warranty.
