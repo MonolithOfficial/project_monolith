@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { useStaticQuery, graphql } from "gatsby"
 
 
@@ -62,9 +62,7 @@ export default function IndexPage() {
             relativePath
             name
             childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData
             }
         }
       }
@@ -143,24 +141,24 @@ export default function IndexPage() {
             
             {/* <h1>{localStorage.getItem("activeLang")}</h1> */}
             <div className="sec-two-photo wd-1">
-              <Img fluid={images.find(n => {
+              <GatsbyImage image={getImage(images.find(n => {
                 return n.node.relativePath.includes("wd_cd_out.png")
-              }).node.childImageSharp.fluid}/>
+              }).node.childImageSharp)} alt="Worldline;Dead CD outer"/>
             </div>
 
-            
+
 
             <div className="sec-two-photo wd-2">
-            <Img fluid={images.find(n => {
+            <GatsbyImage image={getImage(images.find(n => {
                 return n.node.relativePath.includes("wd_cd_hd_back.png")
-              }).node.childImageSharp.fluid}/>
+              }).node.childImageSharp)} alt="Worldline;Dead CD back"/>
             </div>
 
 
             <div className="sec-two-photo wd-4">
-            <Img fluid={images.find(n => {
+            <GatsbyImage image={getImage(images.find(n => {
                 return n.node.relativePath.includes("wd_cd_front2.png")
-              }).node.childImageSharp.fluid}/>
+              }).node.childImageSharp)} alt="Worldline;Dead CD front"/>
             </div>
 
             <div className="sec-two-text wd-text">
@@ -248,9 +246,9 @@ export default function IndexPage() {
             <CustomAudioPlayer />
 
             <div className="sec-two-photo wd-3">
-            <Img fluid={images.find(n => {
+            <GatsbyImage image={getImage(images.find(n => {
                 return n.node.relativePath.includes("wd_cd_layered.png")
-              }).node.childImageSharp.fluid}/>
+              }).node.childImageSharp)} alt="Worldline;Dead CD layered"/>
             </div>
           </section>
         </div>

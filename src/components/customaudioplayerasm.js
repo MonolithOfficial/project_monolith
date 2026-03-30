@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import { useStaticQuery, graphql } from "gatsby";
-import Img from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 // Styles
 import '../styles/audioplayer.scss';
@@ -36,7 +36,7 @@ function CustomAudioPlayerASM() {
 
     const query = useStaticQuery(graphql`
         query {
-            wd: allFile(filter: {extension: {regex: "/(mp3)/"}, relativeDirectory: {eq: "asm"}}, sort: {fields: name}) {
+            wd: allFile(filter: {extension: {regex: "/(mp3)/"}, relativeDirectory: {eq: "asm"}}, sort: {name: ASC}) {
             edges {
                 node {
                 id
@@ -49,9 +49,7 @@ function CustomAudioPlayerASM() {
             bg: file(relativePath: {eq: "a_system_message_cv_empt.png"}) {
                 id
                 childImageSharp {
-                    fluid {
-                        ...GatsbyImageSharpFluid
-                    }
+                    gatsbyImageData
                 }
             }
             
@@ -82,7 +80,7 @@ function CustomAudioPlayerASM() {
                     e.target.classList.add('current-play')
                     }}>
                     <div className="playlist-option-img-holder">
-                        <Img fluid={query.bg.childImageSharp.fluid}/>
+                        <GatsbyImage image={getImage(query.bg.childImageSharp)} alt=""/>
                     </div>
                     <p>{nameArray[index]}</p>
                 </div>
