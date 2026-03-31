@@ -425,20 +425,20 @@ const CassettePage = () => {
         <div className="cassette-shelf">
           {/* <span className="shelf-label">SELECT TAPE</span> */}
           <div className="shelf-cassettes">
-            {CASSETTES.map((cassette) => {
-              const isLoaded = loadedCassette?.id === cassette.id && !isEjected
-              return (
-                <button
-                  key={cassette.id}
-                  className={`shelf-cassette shelf-cassette--${cassette.id} ${isLoaded ? "shelf-cassette--loaded" : ""}`}
-                  onClick={() => handleShelfCassette(cassette)}
-                  title={`Load ${cassette.title}`}
-                  style={{ "--cas-accent": cassette.accentColor }}
-                >
-                  <img src={cassette.cassetteImg} alt={cassette.title} className="shelf-cassette-img" />
-                </button>
-              )
-            })}
+            {(loadedCassette && !isEjected
+              ? [CASSETTES.find(c => c.id === loadedCassette.id), ...CASSETTES.filter(c => c.id !== loadedCassette.id)]
+              : CASSETTES
+            ).map((cassette) => (
+              <button
+                key={cassette.id}
+                className={`shelf-cassette shelf-cassette--${cassette.id}`}
+                onClick={() => handleShelfCassette(cassette)}
+                title={`Load ${cassette.title}`}
+                style={{ "--cas-accent": cassette.accentColor }}
+              >
+                <img src={cassette.cassetteImg} alt={cassette.title} className="shelf-cassette-img" />
+              </button>
+            ))}
           </div>
         </div>
 
