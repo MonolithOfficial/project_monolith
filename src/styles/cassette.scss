@@ -1,0 +1,884 @@
+@import './variables.scss';
+
+// ─── Keyframes ───────────────────────────────────────────────────────────────
+
+@keyframes reel-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes reel-spin-reverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+@keyframes led-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+@keyframes cassette-eject {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-36px); }
+}
+
+@keyframes btn-press {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(4px); }
+  100% { transform: translateY(0); }
+}
+
+// ─── Page wrapper ────────────────────────────────────────────────────────────
+
+.cassette-page {
+  min-height: 100vh;
+  background: $primaryBg;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 160px 38px 72px;
+  gap: 48px;
+}
+
+// ─── Player body ─────────────────────────────────────────────────────────────
+
+.cassette-player {
+  width: 552px;
+  background: linear-gradient(160deg, #3c3c3c 0%, #2a2a2a 40%, #1e1e1e 100%);
+  border-radius: 22px;
+  padding: 17px 24px 22px;
+  box-shadow:
+    0 0 0 1px #111,
+    0 4px 8px rgba(0,0,0,0.6),
+    0 14px 40px rgba(0,0,0,0.8),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  position: relative;
+  user-select: none;
+
+  &.ejected .cassette-body {
+    animation: cassette-eject 0.35s ease-out forwards;
+  }
+}
+
+// ─── Top / bottom bars ───────────────────────────────────────────────────────
+
+.player-topbar,
+.player-bottombar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 5px 7px;
+}
+
+.player-bottombar {
+  padding: 10px 5px 2px;
+  justify-content: space-around;
+}
+
+.brand-label {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.screw {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #666, #2a2a2a);
+  box-shadow:
+    inset 0 1px 2px rgba(0,0,0,0.8),
+    0 1px 0 rgba(255,255,255,0.06);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: #1a1a1a;
+    transform: translateY(-50%);
+  }
+}
+
+// ─── Middle row ──────────────────────────────────────────────────────────────
+
+.player-middle {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-bottom: 12px;
+}
+
+// ─── Displays ────────────────────────────────────────────────────────────────
+
+.info-display,
+.time-display {
+  flex: 0 0 106px;
+
+  .display-screen {
+    background: #0d1a0d;
+    border: 1px solid #111;
+    border-radius: 4px;
+    padding: 7px 7px 6px;
+    box-shadow:
+      inset 0 2px 6px rgba(0,0,0,0.7),
+      0 1px 0 rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-height: 60px;
+    justify-content: center;
+  }
+
+  .display-label {
+    font-family: monospace;
+    font-size: 10px;
+    color: #3a6a3a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .display-value {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #66cc44;
+    text-shadow: 0 0 6px rgba(100, 200, 60, 0.5);
+    white-space: nowrap;
+  }
+}
+
+.time-display {
+  .time-value {
+    font-size: 19px;
+    letter-spacing: 2px;
+    color: #88ee66;
+    text-shadow: 0 0 8px rgba(120, 220, 80, 0.6);
+  }
+}
+
+// ─── Cassette window ─────────────────────────────────────────────────────────
+
+.cassette-window-frame {
+  flex: 1;
+  position: relative;
+  background: #111;
+  border-radius: 7px;
+  padding: 12px 10px;
+  box-shadow:
+    inset 0 3px 10px rgba(0,0,0,0.9),
+    inset 0 0 0 1px #000,
+    0 1px 0 rgba(255,255,255,0.06);
+}
+
+.window-screw {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #555, #1a1a1a);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.9);
+
+  &.window-screw-tl { top: 5px;  left: 5px; }
+  &.window-screw-tr { top: 5px;  right: 5px; }
+  &.window-screw-bl { bottom: 5px; left: 5px; }
+  &.window-screw-br { bottom: 5px; right: 5px; }
+}
+
+// ─── Cassette body ───────────────────────────────────────────────────────────
+
+.cassette-body {
+  background: linear-gradient(180deg, #c8a865 0%, #b89050 50%, #a07830 100%);
+  border-radius: 6px 6px 10px 10px;
+  padding: 7px 10px 10px;
+  position: relative;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.cassette-label {
+  background: linear-gradient(180deg, #e8e0cc 0%, #d4c8a8 100%);
+  border-radius: 4px;
+  padding: 5px 7px 4px;
+  margin-bottom: 6px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.15);
+  height: 32px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.cassette-title {
+  display: block;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.label-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label-line {
+  height: 1px;
+  background: rgba(80, 60, 20, 0.3);
+  border-radius: 1px;
+}
+
+// ─── Tape area + reels ───────────────────────────────────────────────────────
+
+.tape-area {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+}
+
+.tape-path {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 44%;
+  height: 4px;
+  background: #1a0a00;
+  transform: translate(-50%, -50%);
+  border-radius: 1px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.reel {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #3a3a3a 30%, #222 60%, #111 100%);
+  border: 2px solid #111;
+  box-shadow:
+    inset 0 0 0 4px #2a2a2a,
+    0 2px 4px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+
+  &.reel-spin {
+    animation: reel-spin 1.4s linear infinite;
+  }
+
+  &.reel-spin-slow {
+    animation-duration: 2.2s;
+  }
+
+  &.reel-spin-reverse {
+    animation: reel-spin-reverse 0.6s linear infinite !important;
+  }
+
+  &.reel-spin-fast {
+    animation: reel-spin 0.4s linear infinite !important;
+  }
+}
+
+.reel-hub {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #555, #222);
+  border: 1px solid #111;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .spoke {
+    position: absolute;
+    width: 1px;
+    height: 50%;
+    background: #4a4a4a;
+    top: 0;
+    left: 50%;
+    transform-origin: bottom center;
+
+    &:nth-child(1) { transform: rotate(0deg) translateX(-50%); }
+    &:nth-child(2) { transform: rotate(120deg) translateX(-50%); }
+    &:nth-child(3) { transform: rotate(240deg) translateX(-50%); }
+  }
+}
+
+// ─── LED indicator ───────────────────────────────────────────────────────────
+
+.led-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 7px 10px;
+}
+
+.led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: background 0.2s, box-shadow 0.2s;
+
+  &.led-off {
+    background: #1a1a1a;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+  }
+
+  &.led-play {
+    background: #44ff44;
+    box-shadow: 0 0 6px #44ff44, 0 0 12px rgba(68, 255, 68, 0.4);
+    animation: led-pulse 1.2s ease-in-out infinite;
+  }
+
+  &.led-rec {
+    background: #ff2222;
+    box-shadow: 0 0 6px #ff2222, 0 0 12px rgba(255, 34, 34, 0.4);
+    animation: led-pulse 0.8s ease-in-out infinite;
+  }
+}
+
+.led-label {
+  font-family: monospace;
+  font-size: 10px;
+  color: #666;
+  letter-spacing: 1px;
+  min-width: 34px;
+}
+
+// ─── Control buttons ─────────────────────────────────────────────────────────
+
+.player-buttons {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+}
+
+.ctrl-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 5px 8px;
+  background: linear-gradient(180deg, #4e4e4e 0%, #3a3a3a 50%, #2e2e2e 100%);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  box-shadow:
+    0 3px 0 #111,
+    0 4px 6px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  transition: background 0.1s, box-shadow 0.1s, transform 0.1s;
+  outline: none;
+
+  &:hover {
+    background: linear-gradient(180deg, #5a5a5a 0%, #464646 50%, #3a3a3a 100%);
+  }
+
+  &:active,
+  &.btn-active {
+    background: linear-gradient(180deg, #2e2e2e 0%, #242424 100%);
+    box-shadow:
+      0 1px 0 #111,
+      0 2px 3px rgba(0,0,0,0.5),
+      inset 0 2px 4px rgba(0,0,0,0.4);
+    transform: translateY(2px);
+    animation: btn-press 0.12s ease;
+  }
+
+  .btn-icon {
+    font-size: 14px;
+    line-height: 1;
+    color: #ccc;
+  }
+
+  .btn-label {
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #aaa;
+    text-transform: uppercase;
+  }
+}
+
+.rec-btn {
+  .btn-icon { color: #ff6666; }
+
+  &.btn-active .btn-icon { color: #ff2222; }
+}
+
+.play-btn {
+  &.btn-active .btn-icon { color: #66ff66; }
+}
+
+// ─── In-player cassette label cover ──────────────────────────────────────────
+
+.cassette-label-cover {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  overflow: hidden;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.cassette-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.cassette-cover-title {
+  position: relative;
+  z-index: 1;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 7px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 4px;
+  background: rgba(0,0,0,0.55);
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ─── LED row extras ──────────────────────────────────────────────────────────
+
+.no-cassette-hint {
+  font-family: monospace;
+  font-size: 10px;
+  color: #444;
+  font-style: italic;
+}
+
+.loaded-cassette-name {
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 192px;
+}
+
+// ─── Player column ───────────────────────────────────────────────────────────
+
+.player-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+// ─── Tracklist ───────────────────────────────────────────────────────────────
+
+.tracklist {
+  width: 552px;
+  background: #141414;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.6),
+    0 0 0 1px #1e1e1e;
+}
+
+.tracklist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 18px;
+  background: #1a1a1a;
+  border-bottom: 1px solid #222;
+}
+
+.tl-album {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--tl-accent, #888);
+  text-transform: uppercase;
+}
+
+.tl-count {
+  font-family: monospace;
+  font-size: 9px;
+  color: #3a3a3a;
+  letter-spacing: 2px;
+}
+
+.tracklist-items {
+  max-height: 340px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar       { width: 3px; }
+  &::-webkit-scrollbar-track { background: #111; }
+  &::-webkit-scrollbar-thumb { background: #2e2e2e; border-radius: 2px; }
+}
+
+.track-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #1a1a1a;
+  cursor: pointer;
+  transition: background 0.1s;
+  text-align: left;
+  outline: none;
+
+  &:last-child { border-bottom: none; }
+
+  &:hover { background: #1c1c1c; }
+
+  &.track-active {
+    background: #191919;
+    .track-num  { color: var(--tl-accent, #888); }
+    .track-name { color: #ddd; }
+  }
+}
+
+.track-num {
+  font-family: monospace;
+  font-size: 10px;
+  color: #2e2e2e;
+  min-width: 22px;
+  flex-shrink: 0;
+}
+
+.track-name {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #666;
+  flex: 1;
+  text-transform: uppercase;
+}
+
+.track-playing-indicator {
+  font-size: 8px;
+  color: var(--tl-accent, #888);
+  flex-shrink: 0;
+  animation: led-pulse 1.2s ease-in-out infinite;
+}
+
+// ─── Cassette shelf ──────────────────────────────────────────────────────────
+
+.cassette-shelf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 17px;
+  overflow: visible;
+}
+
+.shelf-label {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: #444;
+  text-transform: uppercase;
+}
+
+.shelf-cassettes {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: stretch;
+}
+
+// ─── Individual shelf cassette ───────────────────────────────────────────────
+
+.shelf-cassette {
+  position: relative;
+  width: 480px;
+  background: var(--cas-body, #2a2a2a);
+  border: none;
+  border-radius: 12px 12px 16px 16px;
+  padding: 0;
+  cursor: pointer;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.7),
+    0 1px 0 rgba(255,255,255,0.05),
+    inset 0 0 0 1px rgba(255,255,255,0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 20px 48px rgba(0,0,0,0.85),
+      0 0 0 1px var(--cas-accent, #666),
+      inset 0 0 0 1px rgba(255,255,255,0.08);
+  }
+
+  &:active {
+    transform: translateY(-3px);
+  }
+
+  &.shelf-cassette--loaded {
+    box-shadow:
+      0 8px 24px rgba(0,0,0,0.8),
+      0 0 0 2px var(--cas-accent, #fff),
+      0 0 20px rgba(255,255,255,0.06);
+  }
+}
+
+.sc-edge {
+  height: 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.1) 0%,
+    rgba(0,0,0,0.2) 100%
+  );
+
+  &.sc-edge-top {
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, transparent 100%);
+  }
+
+  &.sc-edge-bottom {
+    border-radius: 0 0 16px 16px;
+    height: 16px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 100%);
+  }
+}
+
+.sc-label {
+  position: relative;
+  height: 92px;
+  overflow: hidden;
+  margin: 0 20px;
+}
+
+.sc-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+}
+
+.sc-label-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 10px 12px 8px;
+  background: linear-gradient(transparent 30%, rgba(0,0,0,0.65) 100%);
+  border-radius: 2px;
+}
+
+.sc-title {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+}
+
+.sc-side {
+  font-family: monospace;
+  font-size: 14px;
+  opacity: 0.7;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+}
+
+.sc-reel-area {
+  position: relative;
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 38px;
+  background: rgba(0,0,0,0.4);
+  margin: 0 14px;
+}
+
+.sc-tape-path {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 36%;
+  height: 4px;
+  background: #111;
+  transform: translate(-50%, -50%);
+  border-radius: 1px;
+}
+
+.sc-reel {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.04);
+  position: relative;
+  z-index: 1;
+}
+
+.sc-reel-hub {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #555, #1a1a1a);
+  border: 1px solid #000;
+}
+
+.sc-loaded-badge {
+  position: absolute;
+  bottom: -52px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: monospace;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--cas-accent, #fff);
+  white-space: nowrap;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
+// Wrap to column when player + shelf can't fit side by side
+@media only screen and (max-width: 920px) {
+  .cassette-page {
+    flex-direction: column;
+    gap: 34px;
+    padding: 160px 19px 58px;
+  }
+
+  .tracklist { width: 100%; }
+
+  .shelf-cassettes { gap: 16px; }
+
+  .shelf-cassette {
+    width: 380px;
+    .sc-label { height: 72px; margin: 0 14px; }
+    .sc-reel-area { height: 72px; padding: 0 28px; margin: 0 10px; }
+    .sc-reel { width: 54px; height: 54px; }
+    .sc-reel-hub { width: 20px; height: 20px; }
+    .sc-title { font-size: 17px; }
+    .sc-side { font-size: 11px; }
+  }
+}
+
+// Tablet — narrow player
+@media only screen and (max-width: 672px) {
+  .cassette-page { padding-top: 100px; }
+
+  .cassette-player {
+    width: 456px;
+    padding: 14px 19px 17px;
+  }
+
+  .player-middle { gap: 12px; }
+
+  .info-display,
+  .time-display {
+    flex: 0 0 89px;
+    .display-value { font-size: 11px; }
+    .display-screen { min-height: 52px; }
+  }
+
+  .time-display .time-value { font-size: 17px; }
+
+  .shelf-cassettes { gap: 14px; }
+
+  .shelf-cassettes { gap: 16px; }
+
+  .shelf-cassette {
+    width: 260px;
+    .sc-label { height: 50px; margin: 0 10px; }
+    .sc-reel-area { height: 50px; padding: 0 20px; margin: 0 8px; }
+    .sc-reel { width: 38px; height: 38px; }
+    .sc-reel-hub { width: 14px; height: 14px; }
+    .sc-title { font-size: 13px; }
+    .sc-side { font-size: 9px; }
+  }
+}
+
+// Mobile — compact layout
+@media only screen and (max-width: 504px) {
+  .cassette-page { padding-top: 90px; }
+
+  .tracklist { width: 340px; }
+
+  .cassette-player {
+    width: 340px;
+    padding: 12px 14px 14px;
+  }
+
+  .player-middle { gap: 10px; }
+
+  .info-display,
+  .time-display {
+    flex: 0 0 70px;
+    .display-value { font-size: 10px; }
+    .display-screen { min-height: 44px; padding: 5px 4px; }
+  }
+
+  .time-display .time-value { font-size: 14px; }
+
+  .reel { width: 31px; height: 31px; }
+
+  .ctrl-btn {
+    padding: 7px 2px 6px;
+    .btn-icon { font-size: 12px; }
+    .btn-label { font-size: 8px; }
+  }
+
+  .shelf-cassettes { gap: 10px; }
+
+  .shelf-cassettes { gap: 14px; }
+
+  .shelf-cassette {
+    width: 300px;
+    .sc-label { height: 56px; margin: 0 12px; }
+    .sc-reel-area { height: 56px; padding: 0 22px; margin: 0 8px; }
+    .sc-reel { width: 42px; height: 42px; }
+    .sc-reel-hub { width: 16px; height: 16px; }
+    .sc-title { font-size: 14px; }
+    .sc-side { font-size: 10px; }
+  }
+}
