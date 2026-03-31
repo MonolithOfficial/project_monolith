@@ -7,6 +7,10 @@ import wdCover from "../images/wd_sq_1-transformed.jpeg"
 import rencontreCover from "../images/Rencontre_front_cover.png"
 import asmCover from "../images/a_system_message_cv_empt.png"
 
+import wdCassetteImg from "../images/wd_cassette_min.png"
+import rencontreCassetteImg from "../images/rencontre-cassette_min.png"
+import asmCassetteImg from "../images/asm_cassette_min.png"
+
 const TRACK_NAMES = {
   wd: [
     "Memories", "As Of Right Now", "Ominous", "Break Your Mind",
@@ -30,6 +34,7 @@ const CASSETTES = [
     title: "WORLDLINE:DEAD",
     side: "SIDE A",
     cover: wdCover,
+    cassetteImg: wdCassetteImg,
     bodyColor: "#060608",
     reelColor: "#0a0810",
     accentColor: "#cc44ff",
@@ -40,6 +45,7 @@ const CASSETTES = [
     title: "RENCONTRE",
     side: "SIDE A",
     cover: rencontreCover,
+    cassetteImg: rencontreCassetteImg,
     bodyColor: "#5a5a5a",
     reelColor: "#2a2a2a",
     accentColor: "#c0c0c0",
@@ -50,6 +56,7 @@ const CASSETTES = [
     title: "A SYSTEM MESSAGE",
     side: "SIDE A",
     cover: asmCover,
+    cassetteImg: asmCassetteImg,
     bodyColor: "#111",
     reelColor: "#0a0a0a",
     accentColor: "#eeeeee",
@@ -282,6 +289,11 @@ const CassettePage = () => {
                   className={`cassette-body ${isEjected ? "cassette-ejected" : ""}`}
                   style={activeCassette ? { background: activeCassette.bodyColor } : {}}
                 >
+                  <div className="cas-corner cas-corner-tl" />
+                  <div className="cas-corner cas-corner-tr" />
+                  <div className="cas-corner cas-corner-bl" />
+                  <div className="cas-corner cas-corner-br" />
+
                   <div
                     className="cassette-label"
                     style={activeCassette ? { background: "none", border: "none", padding: 0 } : {}}
@@ -289,9 +301,15 @@ const CassettePage = () => {
                     {activeCassette ? (
                       <div className="cassette-label-cover">
                         <img src={activeCassette.cover} alt={activeCassette.title} className="cassette-cover-img" />
-                        <span className="cassette-cover-title" style={{ color: activeCassette.labelText }}>
-                          {activeCassette.title}
-                        </span>
+                        <div className="cassette-label-stripes">
+                          <div className="cls" /><div className="cls" /><div className="cls" />
+                        </div>
+                        <div className="cassette-label-band" style={{ background: activeCassette.accentColor }}>
+                          <span className="cassette-side-badge">{activeCassette.side.replace("SIDE ", "")}</span>
+                          <span className="cassette-cover-title" style={{ color: activeCassette.labelText }}>
+                            {activeCassette.title}
+                          </span>
+                        </div>
                       </div>
                     ) : (
                       <>
@@ -306,19 +324,25 @@ const CassettePage = () => {
                   </div>
 
                   <div className="tape-area" style={activeCassette ? { background: activeCassette.bodyColor } : {}}>
-                    <div className="tape-path" />
-                    <div className={`reel reel-left ${isActive ? "reel-spin" : ""} ${isRewinding ? "reel-spin-reverse" : ""}`}
-                      style={activeCassette ? { background: activeCassette.reelColor } : {}}>
-                      <div className="reel-hub">
-                        <div className="spoke" /><div className="spoke" /><div className="spoke" />
+                    <div className="tape-window">
+                      <div className="tape-path" />
+                      <div className={`reel reel-left ${isActive ? "reel-spin" : ""} ${isRewinding ? "reel-spin-reverse" : ""}`}
+                        style={activeCassette ? { "--reel-color": activeCassette.reelColor } : {}}>
+                        <div className="reel-hub">
+                          <div className="spoke" /><div className="spoke" /><div className="spoke" />
+                        </div>
+                      </div>
+                      <div className={`reel reel-right ${isActive ? "reel-spin reel-spin-slow" : ""} ${isRewinding ? "reel-spin-fast" : ""}`}
+                        style={activeCassette ? { "--reel-color": activeCassette.reelColor } : {}}>
+                        <div className="reel-hub">
+                          <div className="spoke" /><div className="spoke" /><div className="spoke" />
+                        </div>
                       </div>
                     </div>
-                    <div className={`reel reel-right ${isActive ? "reel-spin reel-spin-slow" : ""} ${isRewinding ? "reel-spin-fast" : ""}`}
-                      style={activeCassette ? { background: activeCassette.reelColor } : {}}>
-                      <div className="reel-hub">
-                        <div className="spoke" /><div className="spoke" /><div className="spoke" />
-                      </div>
-                    </div>
+                  </div>
+
+                  <div className="cas-bottom-bar">
+                    <div className="cas-notch" /><div className="cas-notch" /><div className="cas-notch" />
                   </div>
                 </div>
 
@@ -399,7 +423,7 @@ const CassettePage = () => {
 
         {/* ── Shelf cassettes ── */}
         <div className="cassette-shelf">
-          <span className="shelf-label">SELECT TAPE</span>
+          {/* <span className="shelf-label">SELECT TAPE</span> */}
           <div className="shelf-cassettes">
             {CASSETTES.map((cassette) => {
               const isLoaded = loadedCassette?.id === cassette.id && !isEjected
@@ -409,28 +433,9 @@ const CassettePage = () => {
                   className={`shelf-cassette shelf-cassette--${cassette.id} ${isLoaded ? "shelf-cassette--loaded" : ""}`}
                   onClick={() => handleShelfCassette(cassette)}
                   title={`Load ${cassette.title}`}
-                  style={{ "--cas-body": cassette.bodyColor, "--cas-accent": cassette.accentColor, "--cas-reel": cassette.reelColor }}
+                  style={{ "--cas-accent": cassette.accentColor }}
                 >
-                  <div className="sc-edge sc-edge-top" />
-                  <div className="sc-label">
-                    <img src={cassette.cover} alt={cassette.title} className="sc-cover" />
-                    <div className="sc-label-overlay">
-                      <span className="sc-title" style={{ color: cassette.labelText }}>{cassette.title}</span>
-                      <span className="sc-side"  style={{ color: cassette.labelText }}>{cassette.side}</span>
-                    </div>
-                  </div>
-                  <div className="sc-reel-area">
-                    <div className="sc-tape-path" />
-                    <div className="sc-reel sc-reel-left"
-                      style={{ background: `radial-gradient(circle, #444 20%, ${cassette.reelColor} 70%)` }}>
-                      <div className="sc-reel-hub" />
-                    </div>
-                    <div className="sc-reel sc-reel-right"
-                      style={{ background: `radial-gradient(circle, #444 20%, ${cassette.reelColor} 70%)` }}>
-                      <div className="sc-reel-hub" />
-                    </div>
-                  </div>
-                  <div className="sc-edge sc-edge-bottom" />
+                  <img src={cassette.cassetteImg} alt={cassette.title} className="shelf-cassette-img" />
                 </button>
               )
             })}
