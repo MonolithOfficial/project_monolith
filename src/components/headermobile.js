@@ -1,42 +1,52 @@
-import React from 'react';
-import { Link } from "gatsby";
-
-import {translate} from '../helpers/translate.js'
+import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
 
 function HeaderMobile() {
-    return (
-        <div id="mobile-topnav">
-            <div className="burger-icon" role="button" onClick={(e) => {
-                let collapsible = e.target.nextElementSibling
-                let burgerIcon = e.target.firstChild
-                if (collapsible.style.height !== "220px") {
-                    collapsible.style.height = "220px";
-                    burgerIcon.style.transform = "rotate(90deg)"
-                }
-                else {
-                    collapsible.style.height = "0px";
-                    burgerIcon.style.transform = "rotate(0deg)"
-                }
-                
-                }}>
-                <svg viewBox="0 0 100 80" width="40" height="40">
-                    <rect width="100" height="20"></rect>
-                    <rect y="30" width="100" height="20"></rect>
-                    <rect y="60" width="100" height="20"></rect>
-                </svg>
-            </div>
-            
-            <div id="dropdown-mobile-menu" height="0px">
-                <ul>
-                {/* <li><Link to="/">{translate("About")}</Link></li> */}
-                <li><Link to="https://www.youtube.com/channel/UC4IrptxENHzpZiOlIGSgPLQ" target="blank">{translate("YouTube")}</Link></li>
-                <li><Link to="https://monolithworldline.bandcamp.com/" target="blank">{translate("Bandcamp")}</Link></li>
-                <li><Link to="https://darkroomlab.net" target="blank">{translate("Darkroom")}</Link></li>
-                </ul>
-                
-            </div>
+  const [open, setOpen] = useState(false)
+  const [activeLang, setActiveLang] = useState("GEO")
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("activeLang")
+      if (stored) setActiveLang(stored)
+    }
+  }, [])
+
+  const switchLang = (lang) => {
+    if (typeof window !== "undefined" && localStorage.getItem("activeLang") !== lang) {
+      localStorage.setItem("activeLang", lang)
+      window.location.reload()
+    }
+  }
+
+  return (
+    <div id="mobile-topnav">
+      <div className="mobile-topbar">
+        <div className="mobile-logo" />
+        <span className="mobile-brand">PROJECT MONOLITH</span>
+        <button
+          className={`burger-btn${open ? " burger-btn--open" : ""}`}
+          onClick={() => setOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span /><span /><span />
+        </button>
+      </div>
+
+      <div className={`mobile-menu${open ? " mobile-menu--open" : ""}`}>
+        <Link to="/" className="mobile-nav-link" onClick={() => setOpen(false)}>HOME</Link>
+        <Link to="/" className="mobile-nav-link" onClick={() => setOpen(false)}>DISCOGRAPHY</Link>
+        <Link to="/cassette" className="mobile-nav-link" onClick={() => setOpen(false)}>CASSETTE</Link>
+        <a href="https://darkroomlab.net" target="_blank" rel="noreferrer" className="mobile-nav-link mobile-nav-link--accent" onClick={e => e.currentTarget.blur()}>DARKROOM</a>
+        <a href="https://www.youtube.com/channel/UC4IrptxENHzpZiOlIGSgPLQ" target="_blank" rel="noreferrer" className="mobile-nav-link mobile-nav-link--muted">YOUTUBE</a>
+        <a href="https://monolithworldline.bandcamp.com/" target="_blank" rel="noreferrer" className="mobile-nav-link mobile-nav-link--muted">BANDCAMP</a>
+        <div className="mobile-lang">
+          <button className={`lang-btn${activeLang === "GEO" ? " lang-btn--active" : ""}`} onClick={() => switchLang("GEO")}>GEO</button>
+          <button className={`lang-btn${activeLang === "ENG" ? " lang-btn--active" : ""}`} onClick={() => switchLang("ENG")}>ENG</button>
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export default HeaderMobile
