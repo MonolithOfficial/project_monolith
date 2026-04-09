@@ -112,7 +112,7 @@ export default function CassettePlayerTablet({
               style={{ '--tab-tl-accent': activeCassette.accentColor }}
             >
               <div className="tab-tl-header">
-                <span className="tab-tl-title">{activeCassette.title}</span>
+                <span className="tab-tl-title">{activeCassette.title} ({activeCassette.year})</span>
                 <span className="tab-tl-count">{currentTracks.length} TRACKS</span>
               </div>
               <div className="tab-tl-divider" />

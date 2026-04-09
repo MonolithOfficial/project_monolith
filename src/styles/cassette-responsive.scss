@@ -792,8 +792,8 @@
 .mob-cassette-page        { display: none; }
 .tab-cassette-page        { display: none; }
 
-// Tablet: 501px – 900px
-@media only screen and (min-width: 501px) and (max-width: 900px) {
+// Tablet: 501px – 1200px
+@media only screen and (min-width: 501px) and (max-width: 1200px) {
   .cassette-desktop-wrapper { display: none; }
   .tab-cassette-page        { display: block; }
 }

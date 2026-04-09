@@ -45,6 +45,7 @@ const CASSETTES = [
   {
     id: "wd",
     title: "WORLDLINE:DEAD",
+    year: 2018,
     side: "SIDE A",
     cover: wdCover,
     cassetteImg: wdCassetteImg,
@@ -56,6 +57,7 @@ const CASSETTES = [
   {
     id: "rencontre",
     title: "RENCONTRE",
+    year: 2023,
     side: "SIDE A",
     cover: rencontreCover,
     cassetteImg: rencontreCassetteImg,
@@ -67,6 +69,7 @@ const CASSETTES = [
   {
     id: "asm",
     title: "A SYSTEM MESSAGE",
+    year: 2023,
     side: "SIDE A",
     cover: asmCover,
     cassetteImg: asmCassetteImg,
@@ -481,7 +484,7 @@ export default function NewIndexPage() {
             {activeCassette && currentTracks.length > 0 && (
               <div className="tracklist" style={{ "--tl-accent": activeCassette.accentColor }}>
                 <div className="tracklist-header">
-                  <span className="tl-album">{activeCassette.title}</span>
+                  <span className="tl-album">{activeCassette.title} ({activeCassette.year})</span>
                   <span className="tl-count">{currentTracks.length} TRACKS</span>
                 </div>
                 <div className="tracklist-items">

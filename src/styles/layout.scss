@@ -64,7 +64,7 @@ main {
     background: rgba(255, 239, 57, 0.6);
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1200px) {
     display: none;
   }
 }
@@ -225,7 +225,7 @@ main {
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(248, 248, 255, 0.06);
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1200px) {
     display: flex;
   }
 }

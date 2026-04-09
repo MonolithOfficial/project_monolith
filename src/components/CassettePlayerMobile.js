@@ -110,7 +110,7 @@ export default function CassettePlayerMobile({
           style={{ '--mob-tl-accent': activeCassette.accentColor }}
         >
           <div className="mob-tl-header">
-            <span className="mob-tl-title">{activeCassette.title}</span>
+            <span className="mob-tl-title">{activeCassette.title} ({activeCassette.year})</span>
             <span className="mob-tl-count">{currentTracks.length} TRACKS</span>
           </div>
           <div className="mob-tl-divider" />
