@@ -14,124 +14,54 @@ body {
 
 
 .section-one {
+    position: relative;
     width: 100%;
-    background-image: url("../images/guitars_combined.png");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100vh;
+    overflow: hidden;
 
-    @media only screen and (max-width: 900px){
-        background-attachment: initial;
-        background-image: url("../images/m_guit_5_inverted.jpg");
-        background-size: cover;
+    &__bg {
+        position: absolute !important;
+        inset: 0;
+        width: 100% !important;
+        height: 100% !important;
     }
-    
 
-    & #extended-header-holder {
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.75) 100%);
+        pointer-events: none;
+    }
+
+    &__content {
         position: relative;
-        // height: 90vh;
+        z-index: 1;
         height: 100%;
-        width: 100%;
-        // overflow: hidden;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 16px;
+    }
 
-        & .heading-text {
-            z-index: 1;
-            position: sticky;
-            display: block;
-            top: 0;
-            width: fit-content;
-            height: fit-content;
-            mix-blend-mode: difference;
+    &__title {
+        font-family: 'Anton', sans-serif;
+        font-size: clamp(48px, 8vw, 120px);
+        font-weight: 400;
+        color: #fff;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0;
+    }
 
-            
-            & h1 {
-                // width: max-content;
-                position: relative;
-                font-size: 2vw;
-                font-weight: 400;
-                text-align: center;
-                color: white;
-                // align-self: center;
-                // justify-self: center;
-                line-height: 1rem;
-                letter-spacing: 0.5rem;
-                // background-color: rgba(0, 0, 0, 0.7);
-                // padding: 20px;
-
-                @media only screen and (max-width: 900px){
-                    line-height: 2rem;
-                    letter-spacing: 0.3rem;
-                    font-size: 30px;
-                }
-
-                @media only screen and (max-height: 600px){
-                    margin-top: 64px;
-                    letter-spacing: 0.3rem;
-                    line-height: 1.5rem;
-                    font-size: 20px;
-                }
-
-                @media only screen and (max-width: 600px){
-                    line-height: 2rem;
-                }
-
-                & span:nth-child(1){
-                opacity: 1;
-                animation: fade-in ease 1s;
-
-                }
-                & span:nth-child(2){
-                opacity: 1;
-                animation: fade-in ease 1s;
-                }
-                & span:nth-child(3){
-                opacity: 1;
-                animation: fade-in ease 1.5s;
-                }
-                & span:nth-child(4){
-                opacity: 1;
-                animation: fade-in ease 1s;
-                }
-                & span:nth-child(5){
-                opacity: 1;
-                animation: fade-in ease 1.8s;
-                }
-                & span:nth-child(6){
-                opacity: 1;
-                animation: fade-in ease 1.4s;
-                }
-                & span:nth-child(7){
-                opacity: 1;
-                animation: fade-in ease 0.5s;
-                }
-                & span:nth-child(8){
-                opacity: 1;
-                animation: fade-in ease 1.9s;
-                }
-                & span:nth-child(9){
-                opacity: 1;
-                animation: fade-in ease 2s;
-                }
-                & span:nth-child(10){
-                opacity: 1;
-                animation: fade-in ease 1s;
-                }
-                & span:nth-child(11){
-                opacity: 1;
-                animation: fade-in ease 0.5s;
-                }
-                & span:nth-child(12){
-                opacity: 1;
-                animation: fade-in ease 1.2s;
-                }
-                }
-            }
-            
+    &__sub {
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 400;
+        color: rgba(255,255,255,0.5);
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
     }
 }
 

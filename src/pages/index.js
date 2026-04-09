@@ -32,7 +32,7 @@ export default function IndexPage() {
 
   const data = useStaticQuery(graphql`
   query {
-    placeholderImage: allFile(filter: { extension: {regex: "/(png)/"}, sourceInstanceName: { eq: "images" } }) {
+    placeholderImage: allFile(filter: { extension: {regex: "/(png|jpg)/"}, sourceInstanceName: { eq: "images" } }) {
       edges {
         node {
             relativePath
@@ -58,57 +58,22 @@ export default function IndexPage() {
     <Layout>
       <SEO title="Home" />
       <section className="section section-one">
-
-      {/* <Parallax blur={0} bgImage={mono_opt} bgImageAlt="WD" strength={500} style={{overflow: "visible"}}> */}
-          
-          <div id="extended-header-holder">
-
-            
-            <div className="heading-text">
-                {/* <h1><span>Project </span><span>Monolith </span><br/>
-                <span>is </span><span>a </span>
-                <span>music </span><span>production, </span><br/>
-                <span>3D modeling </span>
-                <span>& web </span><br/><span>development </span>
-                <span>studio</span>
-
-                </h1> */}
-                <h1>
-                  {
-                    (() => {
-                      if (activeLang === "GEO"){
-                        return <div>
-                           {/* {translation_geo.heading_text_ge} */}
-                            <span>{translation_geo.heading_text_ge[0]}</span><span>{translation_geo.heading_text_ge[1]}</span><hr/>
-
-                            {/* <span>{translation_geo.heading_text_ge[2]} </span><span>{translation_geo.heading_text_ge[3]}</span>
-                            <span>{translation_geo.heading_text_ge[4]} </span><br /><span>{translation_geo.heading_text_ge[5]}</span><br/>
-                            <span>{translation_geo.heading_text_ge[6]}</span>
-                            <span>{translation_geo.heading_text_ge[7]}</span><br/><span>{translation_geo.heading_text_ge[8]}</span>
-                            <span>{translation_geo.heading_text_ge[9]}</span> */}
-                        </div>
-                      }
-                      else {
-                        return (
-                          <div>
-                            <span>Project </span><span>Monolith </span><hr/>
-                            {/* <span style={{lineHeight: "2rem"}}>Presented By<br/>Darkroom Member 002</span> */}
-                            {/* <span>is </span><span>a </span>
-                            <span>music </span><span>production, </span><br/>
-                            <span>3D modeling </span>
-                            <span>& web </span><br/><span>development </span>
-                            <span>vault</span> */}
-                          </div>
-                          
-                        )
-                      }
-                    })()
-                  }
-                </h1>
-            </div>
-          </div>
-        {/* </Parallax> */}
-        
+        <GatsbyImage
+          image={getImage(images.find(n => n.node.relativePath.includes("lamp_1.jpg")).node.childImageSharp)}
+          alt=""
+          className="section-one__bg"
+          loading="lazy"
+          // objectPosition="center 65%"
+        />
+        <div className="section-one__overlay" />
+        <div className="section-one__content">
+          <h1 className="section-one__title">
+            {activeLang === "GEO"
+              ? `${translation_geo.heading_text_ge[0]}${translation_geo.heading_text_ge[1]}`
+              : "Project Monolith"}
+          </h1>
+          <span className="section-one__sub">A Darkroom Production</span>
+        </div>
       </section>
 
       {/* <Parallax blur={0} bgImage={sec_two_bg} bgImageAlt="WD" strength={500} style={{zIndex: "0"}}> */}
