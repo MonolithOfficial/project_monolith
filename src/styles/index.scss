@@ -42,17 +42,33 @@ body {
         align-items: center;
         justify-content: center;
         gap: 16px;
+
+        @media (max-width: 480px) {
+            padding: 0 24px;
+        }
+
+        @media (min-width: 481px) and (max-width: 900px) {
+            padding: 0 48px;
+        }
     }
 
     &__title {
         font-family: 'Anton', sans-serif;
-        font-size: clamp(48px, 8vw, 120px);
+        font-size: clamp(52px, 12vw, 130px);
         font-weight: 400;
         color: #fff;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.077em;
         text-transform: uppercase;
         text-align: center;
         margin: 0;
+
+        @media (min-width: 481px) and (max-width: 900px) {
+            letter-spacing: 0.089em;
+        }
+
+        @media (min-width: 901px) {
+            letter-spacing: 0.092em;
+        }
     }
 
     &__sub {
@@ -62,6 +78,11 @@ body {
         color: rgba(255,255,255,0.5);
         letter-spacing: 0.5em;
         text-transform: uppercase;
+
+        @media (min-width: 481px) and (max-width: 900px) {
+            font-size: 12px;
+            letter-spacing: 0.65em;
+        }
     }
 }
 
