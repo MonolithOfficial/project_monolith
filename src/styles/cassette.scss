@@ -28,11 +28,43 @@
   100% { transform: translateY(0); }
 }
 
+// ─── Section wrapper (when embedded in newIndex) ─────────────────────────────
+
+.section-two-cassette {
+  position: relative;
+  width: 100%;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,1) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @media only screen and (max-width: 920px) {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  @media only screen and (max-width: 504px) {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
 // ─── Page wrapper ────────────────────────────────────────────────────────────
 
 .cassette-page {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
-  background: #0f0d0c;
+  background: transparent;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -704,6 +736,7 @@
   flex-direction: column;
   align-items: center;
   gap: 17px;
+  min-height: 763px;
 }
 
 .shelf-label {
