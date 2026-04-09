@@ -5,9 +5,12 @@ import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { useLang } from "../context/LangContext"
+import CassettePlayerMobile from "../components/CassettePlayerMobile"
+import CassettePlayerTablet from "../components/CassettePlayerTablet"
 
 import '../styles/index.scss'
 import "../styles/cassette.scss"
+import "../styles/cassette-responsive.scss"
 
 import translation_geo from '../translations/georgian.json'
 
@@ -291,6 +294,53 @@ export default function NewIndexPage() {
 
       {/* ── Section Two: Cassette Player ── */}
       <section className="section section-two-cassette" style={{ backgroundImage: `url(${lamp2})` }}>
+        {/* Shared audio element — always mounted regardless of which player is visible */}
+        <audio ref={audioRef} style={{ display: "none" }} />
+
+        {/* ── Mobile player (≤ 500px) ── */}
+        <CassettePlayerMobile
+          isPlaying={isPlaying}
+          isRecording={isRecording}
+          isRewinding={isRewinding}
+          isEjected={isEjected}
+          activeCassette={activeCassette}
+          currentTracks={currentTracks}
+          currentTrackIndex={currentTrackIndex}
+          displayTime={displayTime}
+          CASSETTES={CASSETTES}
+          formatTime={formatTime}
+          handlePlay={handlePlay}
+          handleStop={handleStop}
+          handleRec={handleRec}
+          handleRew={handleRew}
+          handleLoad={handleLoad}
+          handleShelfCassette={handleShelfCassette}
+          selectTrack={selectTrack}
+        />
+
+        {/* ── Tablet player (501px – 900px) ── */}
+        <CassettePlayerTablet
+          isPlaying={isPlaying}
+          isRecording={isRecording}
+          isRewinding={isRewinding}
+          isEjected={isEjected}
+          activeCassette={activeCassette}
+          currentTracks={currentTracks}
+          currentTrackIndex={currentTrackIndex}
+          displayTime={displayTime}
+          CASSETTES={CASSETTES}
+          formatTime={formatTime}
+          handlePlay={handlePlay}
+          handleStop={handleStop}
+          handleRec={handleRec}
+          handleRew={handleRew}
+          handleLoad={handleLoad}
+          handleShelfCassette={handleShelfCassette}
+          selectTrack={selectTrack}
+        />
+
+        {/* ── Desktop player (> 900px) ── */}
+        <div className="cassette-desktop-wrapper">
         <div className="cassette-page">
 
           {/* ── Left column: player + tracklist ── */}
@@ -300,7 +350,6 @@ export default function NewIndexPage() {
               className={`cassette-player ${isEjected ? "ejected" : ""}`}
               style={activeCassette ? { "--player-accent": activeCassette.accentColor } : {}}
             >
-              <audio ref={audioRef} />
 
               <div className="player-topbar">
                 <div className="screw" />
@@ -476,6 +525,7 @@ export default function NewIndexPage() {
           </div>
 
         </div>
+        </div>{/* end cassette-desktop-wrapper */}
       </section>
 
     </Layout>
