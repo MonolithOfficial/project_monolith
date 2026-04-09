@@ -1,23 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
+import { useLang } from '../context/LangContext'
 
 function HeaderMobile() {
   const [open, setOpen] = useState(false)
-  const [activeLang, setActiveLang] = useState("GEO")
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("activeLang")
-      if (stored) setActiveLang(stored)
-    }
-  }, [])
-
-  const switchLang = (lang) => {
-    if (typeof window !== "undefined" && localStorage.getItem("activeLang") !== lang) {
-      localStorage.setItem("activeLang", lang)
-      window.location.reload()
-    }
-  }
+  const { activeLang, switchLang } = useLang()
 
   return (
     <div id="mobile-topnav">

@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { Link } from "gatsby"
 import translation_geo from '../translations/georgian.json'
 import logo from '../images/monolith_logo_transparent.png'
+import { useLang } from '../context/LangContext'
 
 const Header = () => {
-  const [activeLang, setActiveLang] = useState("GEO")
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("activeLang")
-      if (stored) setActiveLang(stored)
-    }
-  }, [])
-
-  const switchLang = (lang) => {
-    if (typeof window !== "undefined" && localStorage.getItem("activeLang") !== lang) {
-      localStorage.setItem("activeLang", lang)
-      window.location.reload()
-    }
-  }
+  const { activeLang, switchLang } = useLang()
 
   return (
     <header id="main-header">

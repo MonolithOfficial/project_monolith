@@ -16,6 +16,16 @@ body {
   background-color: black;
 }
 
+main {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+
+  &.lang-fade {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+}
+
 // ─── Desktop Header ───────────────────────────────────────────────────────────
 
 #main-header {

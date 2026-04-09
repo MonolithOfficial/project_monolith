@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { useStaticQuery, graphql } from "gatsby"
 
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { useLang } from "../context/LangContext"
 import CustomAudioPlayer from "../components/customaudioplayer"
 import CustomAudioPlayerRencontre from "../components/customaudioplayerrencontre"
 import CustomAudioPlayerASM from "../components/customaudioplayerasm"
@@ -26,32 +27,7 @@ import translation_geo from '../translations/georgian.json'
 
 
 export default function IndexPage() {
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const [activeLang, setActiveLang] = useState(() => {
-    if (typeof window !== 'undefined'){
-      return (
-        localStorage.getItem("activeLang")
-      )
-    }
-    else {
-      if (!(timezone == "Asia/Baku")){
-        return "ENG"
-      }
-      else {
-        return "GEO"
-      }
-    }
-  })
-  useEffect(() => {
-
-    if (typeof window !== 'undefined') {
-        setActiveLang(localStorage.getItem("activeLang"))
-    } else {
-        console.log('we are running on the server');
-    }
-    
-
-  }, [])
+  const { activeLang } = useLang()
   // translate("Darkroom")
 
   const data = useStaticQuery(graphql`

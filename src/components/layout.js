@@ -3,10 +3,12 @@ import PropTypes from "prop-types"
 
 import Header from "../components/header"
 import HeaderMobile from "../components/headermobile"
+import { useLang } from "../context/LangContext"
 
 import "../styles/layout.scss"
 
-const Layout = ({ children }) => {
+function LayoutInner({ children }) {
+  const { transitioning } = useLang()
   return (
     <>
       <link
@@ -16,7 +18,7 @@ const Layout = ({ children }) => {
       <div>
         <Header />
         <HeaderMobile />
-        <main>{children}</main>
+        <main className={transitioning ? "lang-fade" : ""}>{children}</main>
         <footer id="site-footer">
           <div className="footer-main">
             <div className="footer-col footer-col--brand">
@@ -56,6 +58,8 @@ const Layout = ({ children }) => {
     </>
   )
 }
+
+const Layout = ({ children }) => <LayoutInner>{children}</LayoutInner>
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
