@@ -615,10 +615,12 @@
 // ─── LED row extras ──────────────────────────────────────────────────────────
 
 .no-cassette-hint {
-  font-family: monospace;
-  font-size: 10px;
-  color: #444;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #777;
   font-style: italic;
+  letter-spacing: 0.5px;
 }
 
 .loaded-cassette-name {
@@ -671,10 +673,11 @@
 }
 
 .tl-count {
-  font-family: monospace;
-  font-size: 9px;
-  color: #3a3a3a;
-  letter-spacing: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  color: #666;
+  letter-spacing: 1px;
 }
 
 .tracklist-items {
@@ -712,9 +715,10 @@
 }
 
 .track-num {
-  font-family: monospace;
-  font-size: 10px;
-  color: #2e2e2e;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #555;
   min-width: 22px;
   flex-shrink: 0;
 }

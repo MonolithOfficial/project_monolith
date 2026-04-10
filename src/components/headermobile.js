@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import { useLang } from '../context/LangContext'
+import logo from '../images/monolith_logo_transparent.png'
 
 function HeaderMobile() {
   const [open, setOpen] = useState(false)
@@ -9,7 +10,7 @@ function HeaderMobile() {
   return (
     <div id="mobile-topnav">
       <div className="mobile-topbar">
-        <div className="mobile-logo" />
+        <div className="mobile-logo"><img src={logo} alt="Monolith logo" /></div>
         <span className="mobile-brand">PROJECT MONOLITH</span>
         <button
           className={`burger-btn${open ? " burger-btn--open" : ""}`}

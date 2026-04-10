@@ -4,18 +4,19 @@ import PropTypes from "prop-types"
 import Header from "../components/header"
 import HeaderMobile from "../components/headermobile"
 import { useLang } from "../context/LangContext"
+import logo from "../images/monolith_logo_transparent.png"
 
 import "../styles/layout.scss"
 
 function LayoutInner({ children }) {
-  const { transitioning } = useLang()
+  const { transitioning, activeLang } = useLang()
   return (
     <>
       <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&family=Nanum+Gothic:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
         rel="stylesheet"
       />
-      <div>
+      <div data-lang={activeLang}>
         <Header />
         <HeaderMobile />
         <main className={transitioning ? "lang-fade" : ""}>{children}</main>
@@ -23,7 +24,7 @@ function LayoutInner({ children }) {
           <div className="footer-main">
             <div className="footer-col footer-col--brand">
               <div className="footer-brand-row">
-                <div className="footer-logo" />
+                <div className="footer-logo"><img src={logo} alt="Monolith logo" /></div>
                 <span className="footer-brand-name">PROJECT MONOLITH</span>
               </div>
               <span className="footer-sub">A DARKROOM PRODUCTION</span>

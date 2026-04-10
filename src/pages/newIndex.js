@@ -291,7 +291,9 @@ export default function NewIndexPage() {
               ? `${translation_geo.heading_text_ge[0]}${translation_geo.heading_text_ge[1]}`
               : "Project Monolith"}
           </h1>
-          <span className="section-one__sub">A Darkroom Production</span>
+          <span className="section-one__sub">{activeLang === "GEO"
+              ? `${translation_geo.darkroom_geo_2}`
+              : "A Darkroom Production"}</span>
         </div>
       </section>
 
@@ -449,7 +451,7 @@ export default function NewIndexPage() {
               <div className="led-row">
                 <div className={`led ${isRecording ? "led-rec" : isPlaying ? "led-play" : "led-off"}`} />
                 <span className="led-label">{isRecording ? "REC" : isPlaying ? "PLAY" : ""}</span>
-                {!loadedCassette && <span className="no-cassette-hint">— insert a cassette</span>}
+                {!activeCassette && <span className="no-cassette-hint">— insert a cassette</span>}
                 {activeCassette && (
                   <span className="loaded-cassette-name" style={{ color: activeCassette.accentColor }}>
                     {currentTracks[currentTrackIndex]?.name || activeCassette.title}
