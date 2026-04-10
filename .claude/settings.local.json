@@ -7,7 +7,8 @@
       "Bash(grep -o '..\\\\{50\\\\}pr_status..\\\\{200\\\\}' \"C:/Users/Monolith/.claude.json\")",
       "Bash(python3 -c \":*)",
       "Bash(node -e \"const d = JSON.parse\\(require\\(''fs''\\).readFileSync\\(''C:/Users/Monolith/.claude.json''\\)\\); console.log\\(Object.keys\\(d\\).join\\(''\\\\n''\\)\\)\")",
-      "mcp__sequential-thinking__sequentialthinking"
+      "mcp__sequential-thinking__sequentialthinking",
+      "WebFetch(domain:www.tsamusic.ge)"
     ]
   }
 }

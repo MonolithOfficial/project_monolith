@@ -40,7 +40,7 @@ const Header = () => {
                         }
                     })()}</Link>
         <span className="nav-dot">·</span>
-        <Link to="/cassette" className="nav-link">{(() => {
+        <Link to="/blogs" className="nav-link">{(() => {
                         if (activeLang === "GEO") {
                           return `${translation_geo.blog_geo}`
                         }
