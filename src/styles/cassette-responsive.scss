@@ -1,0 +1,805 @@
+// ─── Responsive Cassette Players (Mobile & Tablet) ──────────────────────────
+//   Mobile player:  shown at ≤ 500px
+//   Tablet player:  shown at 501px – 900px
+//   Desktop player: shown at > 900px  (existing cassette.scss)
+
+// ─── Mobile Player (≤ 500px) ─────────────────────────────────────────────────
+
+.mob-cassette-page {
+  padding: 80px 12px 48px;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+// ── Panel
+
+.mob-player-panel {
+  background: #262626;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mob-panel-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mob-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mob-dot-circle {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #555;
+}
+
+.mob-brand {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #999;
+  text-transform: uppercase;
+}
+
+// ── Cassette image
+
+.mob-cassette-img-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  height: 140px;
+  background: #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mob-cassette-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mob-cassette-empty {
+  width: 100%;
+  height: 100%;
+  background: #141414;
+}
+
+// ── Status row
+
+.mob-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mob-mono-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mob-mono-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #4db84d;
+  text-transform: uppercase;
+}
+
+.mob-status-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mob-status-indicator {
+  width: 8px;
+  height: 8px;
+  background: #4db84d;
+  border-radius: 1px;
+
+  &.mob-si-rec {
+    background: #e03030;
+    border-radius: 50%;
+  }
+}
+
+.mob-status-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #4db84d;
+  text-transform: uppercase;
+}
+
+.mob-time-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.mob-time-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #4db84d;
+  text-transform: uppercase;
+}
+
+.mob-time-value {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: #4db84d;
+  letter-spacing: 1px;
+}
+
+// ── Track row
+
+.mob-track-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mob-track-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #555;
+  flex-shrink: 0;
+}
+
+.mob-track-now {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  color: #bbb;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ── Buttons
+
+.mob-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.mob-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 4px;
+  background: #333;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.1s, transform 0.1s;
+  box-shadow: 0 2px 0 #1a1a1a;
+
+  &:hover { background: #3d3d3d; }
+
+  &.mob-btn-active {
+    background: #222;
+    box-shadow: 0 1px 0 #111;
+    transform: translateY(1px);
+  }
+}
+
+.mob-btn-rec-dot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e03030;
+
+  .mob-btn-active.mob-btn-rec & {
+    background: #ff4444;
+    box-shadow: 0 0 4px #ff2222;
+  }
+}
+
+.mob-btn-stop-sq {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: #aaa;
+  border-radius: 1px;
+}
+
+.mob-btn-icon {
+  font-size: 12px;
+  color: #aaa;
+
+  .mob-btn-active.mob-btn-play & { color: #4db84d; }
+}
+
+.mob-btn-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+// ── Track list
+
+.mob-tracklist {
+  background: #262626;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.mob-tl-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+}
+
+.mob-tl-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--mob-tl-accent, #ccc);
+  text-transform: uppercase;
+}
+
+.mob-tl-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  color: #666;
+}
+
+.mob-tl-divider {
+  height: 1px;
+  background: #333;
+}
+
+.mob-track-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #1e1e1e;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  transition: background 0.1s;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: #2e2e2e; }
+
+  &.mob-track-active {
+    background: #2e2e2e;
+
+    .mob-track-num     { color: var(--mob-tl-accent, #aaa); }
+    .mob-track-name-txt { color: #e0e0e0; font-weight: 600; }
+  }
+}
+
+.mob-track-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #555;
+  min-width: 22px;
+  flex-shrink: 0;
+}
+
+.mob-track-name-txt {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  color: #888;
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.mob-track-playing {
+  font-size: 8px;
+  color: var(--mob-tl-accent, #aaa);
+  animation: led-pulse 1.2s ease-in-out infinite;
+}
+
+// ── Cassette selector
+
+.mob-cass-selector {
+  display: flex;
+  gap: 8px;
+}
+
+.mob-cass-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  height: 90px;
+  transition: box-shadow 0.2s, opacity 0.2s;
+
+  &.mob-cass-active {
+    box-shadow: 0 0 0 2px var(--cass-accent, #4db84d);
+  }
+
+  &:hover { opacity: 0.88; }
+}
+
+.mob-cass-img {
+  width: 100%;
+  height: 60px;
+  object-fit: cover;
+  display: block;
+}
+
+.mob-cass-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #aaa;
+  text-transform: uppercase;
+  padding: 4px 6px;
+  text-align: center;
+}
+
+// ─── Tablet Player (501px – 900px) ───────────────────────────────────────────
+
+.tab-cassette-page {
+  padding: 80px 16px 48px;
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.tab-body {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.tab-left-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.tab-right-col {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// ── Player panel
+
+.tab-player-panel {
+  background: #262626;
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tab-panel-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tab-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tab-dot-circle {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #555;
+}
+
+.tab-brand {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #999;
+  text-transform: uppercase;
+}
+
+// ── Cassette image
+
+.tab-cassette-img-wrap {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 180px;
+  background: #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-cassette-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tab-cassette-empty {
+  width: 100%;
+  height: 100%;
+  background: #141414;
+}
+
+// ── Status row
+
+.tab-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tab-mono-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.tab-mono-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #4db84d;
+  text-transform: uppercase;
+}
+
+.tab-status-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tab-status-indicator {
+  width: 9px;
+  height: 9px;
+  background: #4db84d;
+  border-radius: 1px;
+
+  &.tab-si-rec {
+    background: #e03030;
+    border-radius: 50%;
+  }
+}
+
+.tab-status-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #4db84d;
+  text-transform: uppercase;
+}
+
+.tab-time-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.tab-time-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #4db84d;
+  text-transform: uppercase;
+}
+
+.tab-time-value {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-size: 26px;
+  font-weight: 700;
+  color: #4db84d;
+  letter-spacing: 1px;
+}
+
+// ── Track row
+
+.tab-track-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tab-track-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #555;
+  flex-shrink: 0;
+}
+
+.tab-track-now {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  color: #bbb;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ── Buttons
+
+.tab-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 4px;
+  background: #333;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.1s, transform 0.1s;
+  box-shadow: 0 2px 0 #1a1a1a;
+
+  &:hover { background: #3d3d3d; }
+
+  &.tab-btn-active {
+    background: #222;
+    box-shadow: 0 1px 0 #111;
+    transform: translateY(1px);
+  }
+}
+
+.tab-btn-rec-dot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e03030;
+
+  .tab-btn-active.tab-btn-rec & {
+    background: #ff4444;
+    box-shadow: 0 0 5px #ff2222;
+  }
+}
+
+.tab-btn-stop-sq {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: #aaa;
+  border-radius: 1px;
+}
+
+.tab-btn-icon {
+  font-size: 14px;
+  color: #aaa;
+
+  .tab-btn-active.tab-btn-play & { color: #4db84d; }
+}
+
+.tab-btn-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+// ── Track list
+
+.tab-tracklist {
+  background: #262626;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.tab-tl-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+}
+
+.tab-tl-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--tab-tl-accent, #ccc);
+  text-transform: uppercase;
+}
+
+.tab-tl-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  color: #666;
+}
+
+.tab-tl-divider {
+  height: 1px;
+  background: #333;
+}
+
+.tab-track-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 16px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #1e1e1e;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  transition: background 0.1s;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: #2e2e2e; }
+
+  &.tab-track-active {
+    background: #2e2e2e;
+
+    .tab-track-num      { color: var(--tab-tl-accent, #aaa); }
+    .tab-track-name-txt { color: #e0e0e0; font-weight: 600; }
+  }
+}
+
+.tab-track-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #555;
+  min-width: 22px;
+  flex-shrink: 0;
+}
+
+.tab-track-name-txt {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  color: #888;
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.tab-track-playing {
+  font-size: 8px;
+  color: var(--tab-tl-accent, #aaa);
+  animation: led-pulse 1.2s ease-in-out infinite;
+}
+
+// ── Cassette selector (right col)
+
+.tab-cass-item {
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+  border: none;
+  border-radius: 12px;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  height: 220px;
+  width: 100%;
+  transition: box-shadow 0.2s, opacity 0.2s;
+
+  &.tab-cass-active {
+    box-shadow: 0 0 0 2px var(--cass-accent, #4db84d);
+  }
+
+  &:hover { opacity: 0.88; }
+}
+
+.tab-cass-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.tab-cass-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #aaa;
+  text-transform: uppercase;
+  padding: 8px 6px;
+  text-align: center;
+}
+
+// ─── Visibility gates (MUST be last — later rules win same-specificity cascade)
+// Default: only desktop visible.
+// Mobile/tablet display values are set here and override styling blocks above.
+
+.cassette-desktop-wrapper { display: block; }
+.mob-cassette-page        { display: none; }
+.tab-cassette-page        { display: none; }
+
+// Tablet: 501px – 1200px
+@media only screen and (min-width: 501px) and (max-width: 1200px) {
+  .cassette-desktop-wrapper { display: none; }
+  .tab-cassette-page        { display: block; }
+}
+
+// Mobile: ≤ 500px
+@media only screen and (max-width: 500px) {
+  .cassette-desktop-wrapper { display: none; }
+  .mob-cassette-page        { display: flex; }
+}

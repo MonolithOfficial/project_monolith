@@ -1,0 +1,896 @@
+@import './variables.scss';
+
+// ─── Keyframes ───────────────────────────────────────────────────────────────
+
+@keyframes reel-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes reel-spin-reverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+@keyframes led-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+@keyframes cassette-eject {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-36px); }
+}
+
+@keyframes btn-press {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(4px); }
+  100% { transform: translateY(0); }
+}
+
+// ─── Section wrapper (when embedded in newIndex) ─────────────────────────────
+
+.section-two-cassette {
+  position: relative;
+  width: 100%;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,1) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  // Tablet: fixed attachment causes scroll-jank on mobile webkit — use scroll instead
+  @media only screen and (min-width: 501px) and (max-width: 1200px) {
+    background-attachment: scroll;
+  }
+
+  // Mobile: strip the background image and overlay entirely
+  @media only screen and (max-width: 500px) {
+    background-image: none !important;
+    background-color: #000;
+
+    &::before {
+      display: none;
+    }
+  }
+
+}
+
+// ─── Page wrapper ────────────────────────────────────────────────────────────
+
+.cassette-page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 100px 38px 72px;
+  gap: 48px;
+}
+
+// ─── Player body ─────────────────────────────────────────────────────────────
+
+.cassette-player {
+  width: 552px;
+  background: linear-gradient(160deg, #3c3c3c 0%, #2a2a2a 40%, #1e1e1e 100%);
+  border-radius: 22px;
+  padding: 17px 24px 22px;
+  box-shadow:
+    0 0 0 1px #111,
+    0 4px 8px rgba(0,0,0,0.6),
+    0 14px 40px rgba(0,0,0,0.8),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  position: relative;
+  user-select: none;
+
+  &.ejected .cassette-body {
+    animation: cassette-eject 0.35s ease-out forwards;
+  }
+}
+
+// ─── Top / bottom bars ───────────────────────────────────────────────────────
+
+.player-topbar,
+.player-bottombar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 5px 7px;
+}
+
+.player-bottombar {
+  padding: 10px 5px 2px;
+  justify-content: space-around;
+}
+
+.brand-label {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.screw {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #666, #2a2a2a);
+  box-shadow:
+    inset 0 1px 2px rgba(0,0,0,0.8),
+    0 1px 0 rgba(255,255,255,0.06);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: #1a1a1a;
+    transform: translateY(-50%);
+  }
+}
+
+// ─── Middle row ──────────────────────────────────────────────────────────────
+
+.player-middle {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-bottom: 12px;
+}
+
+// ─── Displays ────────────────────────────────────────────────────────────────
+
+.info-display,
+.time-display {
+  flex: 0 0 106px;
+
+  .display-screen {
+    background: #0d1a0d;
+    border: 1px solid #111;
+    border-radius: 4px;
+    padding: 7px 7px 6px;
+    box-shadow:
+      inset 0 2px 6px rgba(0,0,0,0.7),
+      0 1px 0 rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-height: 60px;
+    justify-content: center;
+  }
+
+  .display-label {
+    font-family: monospace;
+    font-size: 10px;
+    color: #3a6a3a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .display-value {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #66cc44;
+    text-shadow: 0 0 6px rgba(100, 200, 60, 0.5);
+    white-space: nowrap;
+  }
+}
+
+.time-display {
+  .time-value {
+    font-size: 19px;
+    letter-spacing: 2px;
+    color: #88ee66;
+    text-shadow: 0 0 8px rgba(120, 220, 80, 0.6);
+  }
+}
+
+// ─── Cassette window ─────────────────────────────────────────────────────────
+
+.cassette-window-frame {
+  flex: 1;
+  position: relative;
+  background: #111;
+  border-radius: 7px;
+  padding: 12px 10px;
+  box-shadow:
+    inset 0 3px 10px rgba(0,0,0,0.9),
+    inset 0 0 0 1px #000,
+    0 1px 0 rgba(255,255,255,0.06);
+}
+
+.window-screw {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #555, #1a1a1a);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.9);
+
+  &.window-screw-tl { top: 5px;  left: 5px; }
+  &.window-screw-tr { top: 5px;  right: 5px; }
+  &.window-screw-bl { bottom: 5px; left: 5px; }
+  &.window-screw-br { bottom: 5px; right: 5px; }
+}
+
+// ─── In-player cassette body ─────────────────────────────────────────────────
+
+.cassette-body {
+  background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+  border-radius: 5px 5px 8px 8px;
+  padding: 6px 8px 0;
+  position: relative;
+  box-shadow:
+    0 2px 6px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+// ── In-player corner screws
+.cas-corner {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #555, #1c1c1c);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.9);
+  z-index: 5;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: #111;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  &.cas-corner-tl { top: 4px;  left: 4px; }
+  &.cas-corner-tr { top: 4px;  right: 4px; }
+  &.cas-corner-bl { bottom: 12px; left: 4px; }
+  &.cas-corner-br { bottom: 12px; right: 4px; }
+}
+
+// ── In-player label
+.cassette-label {
+  border-radius: 3px;
+  margin-bottom: 5px;
+  height: 28px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.cassette-title {
+  display: block;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #888;
+  padding: 3px 6px 2px;
+}
+
+.label-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 6px;
+}
+
+.label-line {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1px;
+}
+
+.cassette-label-cover {
+  position: relative;
+  width: 100%;
+  height: 28px;
+  overflow: hidden;
+  border-radius: 3px;
+  display: flex;
+  align-items: stretch;
+}
+
+.cassette-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+}
+
+.cassette-label-stripes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 3px 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cls {
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: 0 3px;
+}
+
+.cassette-label-band {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 4px;
+  z-index: 2;
+}
+
+.cassette-side-badge {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 8px;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(0,0,0,0.6);
+  width: 13px;
+  height: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.cassette-cover-title {
+  position: relative;
+  z-index: 1;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 7px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1;
+}
+
+// ── In-player tape area with oval window
+.tape-area {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.tape-window {
+  width: 100%;
+  height: 44px;
+  border-radius: 22px;
+  background: rgba(10, 5, 2, 0.96);
+  border: 1.5px solid rgba(60, 40, 15, 0.4);
+  box-shadow:
+    inset 0 2px 8px rgba(0,0,0,0.95),
+    inset 0 0 0 1px rgba(255,255,255,0.02);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tape-path {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: 42%;
+  height: 4px;
+  background: linear-gradient(180deg, #2a1400, #0d0700);
+  transform: translate(-50%, -50%);
+  border-radius: 1px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.7);
+}
+
+.reel {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%,
+    #444 0%,
+    #333 25%,
+    var(--reel-color, #1a1a1a) 55%,
+    #2a2a2a 80%,
+    #3a3a3a 100%
+  );
+  border: 2px solid rgba(160,140,80,0.18);
+  box-shadow:
+    inset 0 0 0 3px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(0,0,0,0.7),
+    0 1px 3px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+
+  &.reel-spin {
+    animation: reel-spin 1.4s linear infinite;
+  }
+
+  &.reel-spin-slow {
+    animation-duration: 2.2s;
+  }
+
+  &.reel-spin-reverse {
+    animation: reel-spin-reverse 0.6s linear infinite !important;
+  }
+
+  &.reel-spin-fast {
+    animation: reel-spin 0.4s linear infinite !important;
+  }
+}
+
+.reel-hub {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 38%, #666, #1e1e1e);
+  border: 1.5px solid #0a0a0a;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.06);
+
+  .spoke {
+    position: absolute;
+    width: 1px;
+    height: 52%;
+    background: #4a4a4a;
+    top: 0;
+    left: 50%;
+    transform-origin: bottom center;
+
+    &:nth-child(1) { transform: rotate(0deg) translateX(-50%); }
+    &:nth-child(2) { transform: rotate(120deg) translateX(-50%); }
+    &:nth-child(3) { transform: rotate(240deg) translateX(-50%); }
+  }
+}
+
+// ── In-player bottom bar with notches
+.cas-bottom-bar {
+  height: 11px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 28px 0;
+}
+
+.cas-notch {
+  width: 12px;
+  height: 7px;
+  background: rgba(0,0,0,0.85);
+  border-radius: 1px 1px 0 0;
+  box-shadow: inset 0 2px 3px rgba(0,0,0,0.9);
+}
+
+// ─── LED indicator ───────────────────────────────────────────────────────────
+
+.led-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 7px 10px;
+}
+
+.led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: background 0.2s, box-shadow 0.2s;
+
+  &.led-off {
+    background: #1a1a1a;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+  }
+
+  &.led-play {
+    background: #44ff44;
+    box-shadow: 0 0 6px #44ff44, 0 0 12px rgba(68, 255, 68, 0.4);
+    animation: led-pulse 1.2s ease-in-out infinite;
+  }
+
+  &.led-rec {
+    background: #ff2222;
+    box-shadow: 0 0 6px #ff2222, 0 0 12px rgba(255, 34, 34, 0.4);
+    animation: led-pulse 0.8s ease-in-out infinite;
+  }
+}
+
+.led-label {
+  font-family: monospace;
+  font-size: 10px;
+  color: #666;
+  letter-spacing: 1px;
+  min-width: 34px;
+}
+
+// ─── Control buttons ─────────────────────────────────────────────────────────
+
+.player-buttons {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+}
+
+.ctrl-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 5px 8px;
+  background: linear-gradient(180deg, #4e4e4e 0%, #3a3a3a 50%, #2e2e2e 100%);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  box-shadow:
+    0 3px 0 #111,
+    0 4px 6px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  transition: background 0.1s, box-shadow 0.1s, transform 0.1s;
+  outline: none;
+
+  &:hover {
+    background: linear-gradient(180deg, #5a5a5a 0%, #464646 50%, #3a3a3a 100%);
+  }
+
+  &:active,
+  &.btn-active {
+    background: linear-gradient(180deg, #2e2e2e 0%, #242424 100%);
+    box-shadow:
+      0 1px 0 #111,
+      0 2px 3px rgba(0,0,0,0.5),
+      inset 0 2px 4px rgba(0,0,0,0.4);
+    transform: translateY(2px);
+    animation: btn-press 0.12s ease;
+  }
+
+  .btn-icon {
+    font-size: 14px;
+    line-height: 1;
+    color: #ccc;
+  }
+
+  .btn-label {
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #aaa;
+    text-transform: uppercase;
+  }
+}
+
+.rec-btn {
+  .btn-icon { color: #ff6666; }
+
+  &.btn-active .btn-icon { color: #ff2222; }
+}
+
+.play-btn {
+  &.btn-active .btn-icon { color: #66ff66; }
+}
+
+// ─── LED row extras ──────────────────────────────────────────────────────────
+
+.no-cassette-hint {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #777;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.loaded-cassette-name {
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 192px;
+}
+
+// ─── Player column ───────────────────────────────────────────────────────────
+
+.player-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+// ─── Tracklist ───────────────────────────────────────────────────────────────
+
+.tracklist {
+  width: 552px;
+  background: #141414;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.6),
+    0 0 0 1px #1e1e1e;
+}
+
+.tracklist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 18px;
+  background: #1a1a1a;
+  border-bottom: 1px solid #222;
+}
+
+.tl-album {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--tl-accent, #888);
+  text-transform: uppercase;
+}
+
+.tl-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+.tracklist-items {
+  max-height: 340px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar       { width: 3px; }
+  &::-webkit-scrollbar-track { background: #111; }
+  &::-webkit-scrollbar-thumb { background: #2e2e2e; border-radius: 2px; }
+}
+
+.track-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #1a1a1a;
+  cursor: pointer;
+  transition: background 0.1s;
+  text-align: left;
+  outline: none;
+
+  &:last-child { border-bottom: none; }
+
+  &:hover { background: #1c1c1c; }
+
+  &.track-active {
+    background: #191919;
+    .track-num  { color: var(--tl-accent, #888); }
+    .track-name { color: #ddd; }
+  }
+}
+
+.track-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #555;
+  min-width: 22px;
+  flex-shrink: 0;
+}
+
+.track-name {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #666;
+  flex: 1;
+  text-transform: uppercase;
+}
+
+.track-playing-indicator {
+  font-size: 8px;
+  color: var(--tl-accent, #888);
+  flex-shrink: 0;
+  animation: led-pulse 1.2s ease-in-out infinite;
+}
+
+// ─── Cassette shelf ──────────────────────────────────────────────────────────
+
+.cassette-shelf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 17px;
+  min-height: 763px;
+}
+
+.shelf-label {
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: #444;
+  text-transform: uppercase;
+}
+
+.shelf-cassettes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+}
+
+// ─── Individual shelf cassette ───────────────────────────────────────────────
+
+.shelf-cassette {
+  position: relative;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+  // margin-top handles stacking collapse; transform handles per-item hover lift
+  transition: margin-top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              transform  0.18s ease,
+              box-shadow 0.18s ease,
+              filter     0.18s ease;
+  outline: none;
+  display: block;
+  line-height: 0;
+
+  // Stack: first cassette on top, rest overlap it from below
+  &:nth-child(1) { z-index: 3; margin-top: 0; }
+  &:nth-child(2) { z-index: 2; margin-top: -148px; }
+  &:nth-child(3) { z-index: 1; margin-top: -148px; }
+
+  // Expanded — triggered by hovering anywhere on the shelf
+  .cassette-shelf:hover &:nth-child(2),
+  .cassette-shelf:hover &:nth-child(3) {
+    margin-top: 20px;
+  }
+
+  .cassette-shelf:hover &:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 22px 52px rgba(0,0,0,0.88),
+      0 0 0 2px var(--cas-accent, #666);
+    filter: brightness(1.08);
+  }
+
+  &:active {
+    transform: translateY(-3px);
+  }
+
+}
+
+.shelf-cassette-img {
+  width: 380px;
+  display: block;
+  border-radius: 10px;
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
+@media only screen and (max-width: 920px) {
+  .cassette-page {
+    flex-direction: column;
+    gap: 34px;
+    padding: 100px 19px 58px;
+  }
+
+  .tracklist { width: 100%; }
+
+  .shelf-cassettes { gap: 16px; }
+
+  .shelf-cassette-img { width: 340px; }
+
+  // When shelf is stacked below the player, keep cassettes expanded
+  .shelf-cassette {
+    &:nth-child(2),
+    &:nth-child(3) { margin-top: 16px; }
+  }
+}
+
+@media only screen and (max-width: 672px) {
+  .cassette-page { padding-top: 100px; }
+
+  .cassette-player {
+    width: 456px;
+    padding: 14px 19px 17px;
+  }
+
+  .player-middle { gap: 12px; }
+
+  .info-display,
+  .time-display {
+    flex: 0 0 89px;
+    .display-value { font-size: 11px; }
+    .display-screen { min-height: 52px; }
+  }
+
+  .time-display .time-value { font-size: 17px; }
+
+  .shelf-cassettes { gap: 14px; }
+
+  .shelf-cassette-img { width: 260px; }
+}
+
+@media only screen and (max-width: 504px) {
+  .cassette-page { padding-top: 90px; }
+
+  .tracklist { width: 340px; }
+
+  .cassette-player {
+    width: 340px;
+    padding: 12px 14px 14px;
+  }
+
+  .player-middle { gap: 10px; }
+
+  .info-display,
+  .time-display {
+    flex: 0 0 70px;
+    .display-value { font-size: 10px; }
+    .display-screen { min-height: 44px; padding: 5px 4px; }
+  }
+
+  .time-display .time-value { font-size: 14px; }
+
+  .reel { width: 28px; height: 28px; }
+  .tape-window { height: 38px; border-radius: 19px; padding: 0 7px; }
+
+  .ctrl-btn {
+    padding: 7px 2px 6px;
+    .btn-icon { font-size: 12px; }
+    .btn-label { font-size: 8px; }
+  }
+
+  .shelf-cassettes { gap: 14px; }
+
+  .shelf-cassette-img { width: 290px; }
+}

@@ -7,6 +7,7 @@ module.exports = {
   plugins: [
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -22,6 +23,14 @@ module.exports = {
         path: `${__dirname}/src/audio`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog-posts`,
+        path: `${__dirname}/src/blog-posts`,
+      },
+    },
+    `gatsby-transformer-remark`,
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-manifest`,
