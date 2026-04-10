@@ -1,7 +1,8 @@
 ---
 title: "Worldline:Dead-ის შექმნის ისტორია"
 date: "2024-03-15"
-slug: "the-making-of-worldline-dead"
+slug: "the-making-of-worldline-dead-geo"
+lang: "geo"
 excerpt: "Project Monolith-ის სადებიუტო ალბომის კრეატიული პროცესის მიმოხილვა: საწყისი იდეებიდან საბოლოო მიქსამდე."
 category: "Essay"
 author: "Project Monolith"

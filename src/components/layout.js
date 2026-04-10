@@ -5,6 +5,8 @@ import Header from "../components/header"
 import HeaderMobile from "../components/headermobile"
 import { useLang } from "../context/LangContext"
 import logo from "../images/monolith_logo_transparent.png"
+import translation_geo from '../translations/georgian.json'
+
 
 import "../styles/layout.scss"
 
@@ -13,7 +15,7 @@ function LayoutInner({ children }) {
   return (
     <>
       <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&family=Noto+Sans+Georgian:wght@400;500;700&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
         rel="stylesheet"
       />
       <div data-lang={activeLang}>
@@ -25,16 +27,22 @@ function LayoutInner({ children }) {
             <div className="footer-col footer-col--brand">
               <div className="footer-brand-row">
                 <div className="footer-logo"><img src={logo} alt="Monolith logo" /></div>
-                <span className="footer-brand-name">PROJECT MONOLITH</span>
+                <span className="footer-brand-name">{activeLang === "GEO"
+                      ? `${translation_geo.heading_text_ge[0]} ${translation_geo.heading_text_ge[1]}` 
+                      : "PROJECT MONOLITH"}</span>
               </div>
-              <span className="footer-sub">A DARKROOM PRODUCTION</span>
-              <span className="footer-tagline">Music · Design · Experience</span>
+              <span className="footer-sub">{activeLang === "GEO"
+              ? `${translation_geo.darkroom_geo_2}`
+              : "A DARKROOM PRODUCTION"}</span>
+              <span className="footer-tagline">Music · Blogs</span>
               <div className="footer-yellow-rule" />
               <span className="footer-est">EST. 2013 · TBILISI</span>
             </div>
 
             <div className="footer-col footer-col--disc">
-              <span className="footer-col-label">DISCOGRAPHY</span>
+              <span className="footer-col-label">{activeLang === "GEO"
+              ? `${translation_geo.discography_geo}`
+              : "DISCOGRAPHY"}</span>
               <div className="footer-col-rule" />
               <span className="footer-album">Worldline;Dead <span className="footer-year">2018</span></span>
               <span className="footer-album">Rencontre <span className="footer-year">2023</span></span>

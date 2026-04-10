@@ -1,14 +1,40 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
+import React, { useEffect, useState } from "react"
+import { graphql, Link, navigate } from "gatsby"
 import Layout from "../components/layout"
+import { useLang } from "../context/LangContext"
 import "../styles/blog-post.scss"
 
 const BlogPost = ({ data }) => {
+  const { activeLang } = useLang()
   const post = data.markdownRemark
   const { title, date, category, author, readTime, coverImage,
-    rating, ratingNote, albumArtist, albumName, albumYear, albumGenre, pullquote } = post.frontmatter
+    albumArtist, albumName, albumYear, albumGenre, pullquote, lang } = post.frontmatter
 
-  const related = data.allMarkdownRemark?.nodes || []
+  const [viewCount, setViewCount] = useState(null)
+
+  useEffect(() => {
+    const slug = post.frontmatter.slug
+    const isGeo = lang === "geo"
+    if (activeLang === "GEO" && !isGeo) {
+      navigate(`/blogs/${slug}-geo`, { replace: true })
+    } else if (activeLang === "ENG" && isGeo) {
+      navigate(`/blogs/${slug.replace(/-geo$/, "")}`, { replace: true })
+    }
+  }, [activeLang])
+
+  useEffect(() => {
+    const key = `views_${post.frontmatter.slug}`
+    const next = (parseInt(localStorage.getItem(key) || "0", 10)) + 1
+    localStorage.setItem(key, next)
+    setViewCount(next)
+  }, [])
+
+  const allRelated = data.allMarkdownRemark?.nodes || []
+  const related = allRelated.filter(n =>
+    activeLang === "GEO"
+      ? n.frontmatter.lang === "geo"
+      : n.frontmatter.lang !== "geo"
+  )
 
   // Build filename → publicURL map
   const imageMap = {}
@@ -55,14 +81,11 @@ const BlogPost = ({ data }) => {
             </div>
           )}
 
-          {rating && (
+          {viewCount !== null && (
             <div className="post-rating-mobile">
-              <span className="post-rating-score">{rating}</span>
+              <span className="post-rating-score">{viewCount}</span>
               <div className="post-rating-col">
-                <span className="post-rating-label">RATING / 10</span>
-                {ratingNote && (
-                  <span className="post-rating-note">{ratingNote}</span>
-                )}
+                <span className="post-rating-label">VIEWS</span>
               </div>
             </div>
           )}
@@ -75,13 +98,10 @@ const BlogPost = ({ data }) => {
 
         {/* Sidebar — desktop only */}
         <aside className="post-sidebar">
-          {rating && (
+          {viewCount !== null && (
             <div className="post-sidebar__rating">
-              <span className="post-sidebar__rating-label">RATING</span>
-              <span className="post-sidebar__rating-score">{rating} / 10</span>
-              {ratingNote && (
-                <span className="post-sidebar__rating-note">{ratingNote}</span>
-              )}
+              <span className="post-sidebar__rating-label">VIEWS</span>
+              <span className="post-sidebar__rating-score">{viewCount}</span>
             </div>
           )}
 
@@ -168,6 +188,7 @@ export const query = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         slug
+        lang
         category
         author
         readTime
@@ -191,6 +212,7 @@ export const query = graphql`
           title
           date(formatString: "MMMM DD, YYYY")
           slug
+          lang
           category
           coverImage
         }

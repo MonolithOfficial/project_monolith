@@ -1,10 +1,19 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
+import { useLang } from "../context/LangContext"
 import "../styles/blogs.scss"
+import translation_geo from '../translations/georgian.json'
+
 
 const BlogsPage = ({ data }) => {
-  const posts = data.allMarkdownRemark.nodes
+  const { activeLang } = useLang()
+  const allPosts = data.allMarkdownRemark.nodes
+  const posts = allPosts.filter(p =>
+    activeLang === "GEO"
+      ? p.frontmatter.lang === "geo"
+      : p.frontmatter.lang !== "geo"
+  )
   const [featured, ...rest] = posts
 
   // Build filename → publicURL map from gatsby-source-filesystem images
@@ -17,19 +26,29 @@ const BlogsPage = ({ data }) => {
     <Layout>
       {/* Hero */}
       <section className="blogs-hero">
-        <span className="blogs-hero__eyebrow">MONOMUSIC BLOG</span>
-        <h1 className="blogs-hero__title">მონომუსიკა</h1>
+        <span className="blogs-hero__eyebrow">{activeLang === "GEO"
+                      ? `${translation_geo.music_blog}`
+                      : "MUSIC BLOG"}</span>
+        <h1 className="blogs-hero__title">{activeLang === "GEO"
+                      ? `${translation_geo.monomusic}`
+                      : "MONOMUSIC"}</h1>
         <div className="blogs-hero__rule" />
-        <p className="blogs-hero__sub">Music stories, reviews &amp; interviews</p>
+        <p className="blogs-hero__sub">{activeLang === "GEO"
+                      ? `${translation_geo.music_stories}`
+                      : "Music stories, reviews & interviews"}</p>
       </section>
 
       {/* Featured Post */}
       {featured && (
         <section className="blogs-featured">
           <div className="blogs-featured__label-row">
-            <span className="blogs-featured__tag">FEATURED</span>
+            <span className="blogs-featured__tag">{activeLang === "GEO"
+                      ? `${translation_geo.featured}`
+                      : "FEATURED"}</span>
             <span className="blogs-featured__sep" />
-            <span className="blogs-featured__label-text">EDITOR'S PICK</span>
+            <span className="blogs-featured__label-text">{activeLang === "GEO"
+                      ? `${translation_geo.editors_pick}`
+                      : "EDITOR'S PICK"}</span>
           </div>
           <Link
             to={`/blogs/${featured.frontmatter.slug}`}
@@ -68,7 +87,9 @@ const BlogsPage = ({ data }) => {
                   {featured.frontmatter.date}
                 </span>
               </div>
-              <span className="blogs-featured__cta">READ ARTICLE →</span>
+              <span className="blogs-featured__cta">{activeLang === "GEO"
+                      ? `${translation_geo.read_article}`
+                      : "READ ARTICLE"} →</span>
             </div>
           </Link>
         </section>
@@ -77,7 +98,9 @@ const BlogsPage = ({ data }) => {
       {/* Latest Posts */}
       <section className="blogs-latest">
         <div className="blogs-latest__label-row">
-          <span className="blogs-latest__label">LATEST POSTS</span>
+          <span className="blogs-latest__label">{activeLang === "GEO"
+                      ? `${translation_geo.archive}`
+                      : "ARCHIVE"}</span>
           <div className="blogs-latest__rule" />
         </div>
         {rest.length > 0 ? (
@@ -116,7 +139,9 @@ const BlogsPage = ({ data }) => {
             </div>
           </>
         ) : (
-          <p className="blogs-latest__empty">MORE ARTICLES COMING SOON</p>
+          <p className="blogs-latest__empty">{activeLang === "GEO"
+                      ? `${translation_geo.more_articles}`
+                      : "MORE ARTICLES COMING SOON"}</p>
         )}
       </section>
     </Layout>
@@ -131,6 +156,7 @@ export const query = graphql`
           title
           date(formatString: "MMMM DD, YYYY")
           slug
+          lang
           excerpt
           category
           author

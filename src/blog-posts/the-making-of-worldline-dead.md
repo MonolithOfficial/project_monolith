@@ -2,6 +2,7 @@
 title: "The Making of Worldline:Dead"
 date: "2024-03-15"
 slug: "the-making-of-worldline-dead"
+lang: "eng"
 excerpt: "A behind-the-scenes look at the creative process behind Project Monolith's debut album, from initial concepts to the final mix."
 category: "Essay"
 author: "Project Monolith"

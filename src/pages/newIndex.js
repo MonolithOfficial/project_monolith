@@ -282,7 +282,7 @@ export default function NewIndexPage() {
           image={getImage(images.find(n => n.node.relativePath.includes("lamp_1.jpg")).node.childImageSharp)}
           alt=""
           className="section-one__bg"
-          loading="lazy"
+          loading="eager"
         />
         <div className="section-one__overlay" />
         <div className="section-one__content">

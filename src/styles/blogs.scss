@@ -58,6 +58,7 @@
 .blogs-hero__rule {
   width: 64px;
   height: 1px;
+  margin-top: 20px;
   background: #ffef39;
 
   @media (max-width: 768px) {
@@ -411,6 +412,31 @@
 
   @media (max-width: 768px) {
     font-size: 9px;
+  }
+}
+
+// ─── Georgian overrides ────────────────────────────────────────────────────────
+
+[data-lang="GEO"] {
+  .blogs-hero__eyebrow {
+    font-family: 'Noto Sans Georgian', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgba(255, 239, 57, 0.85);
+  }
+
+  .blogs-hero__title {
+    font-family: 'Noto Sans Georgian', 'Anton', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .blogs-hero__sub {
+    font-family: 'Noto Sans Georgian', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0;
+    color: rgba(248, 248, 255, 0.6);
   }
 }
 
