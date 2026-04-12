@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 
 import Header from "../components/header"
 import HeaderMobile from "../components/headermobile"
 import { useLang } from "../context/LangContext"
+import { useTheme } from "../context/ThemeContext"
 import logo from "../images/monolith_logo_transparent.png"
 import translation_geo from '../translations/georgian.json'
 
@@ -12,13 +13,24 @@ import "../styles/layout.scss"
 
 function LayoutInner({ children }) {
   const { transitioning, activeLang } = useLang()
+  const { monoMusicTheme } = useTheme()
+  const [isMonoMusic, setIsMonoMusic] = useState(false)
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMonoMusic(window.location.pathname.startsWith("/blogs"))
+    }
+  }, [children])
+
+  const theme = isMonoMusic ? monoMusicTheme : "dark"
+
   return (
     <>
       <link
         href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&family=Noto+Sans+Georgian:wght@400;500;700&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
         rel="stylesheet"
       />
-      <div data-lang={activeLang}>
+      <div data-lang={activeLang} data-theme={theme}>
         <Header />
         <HeaderMobile />
         <main className={transitioning ? "lang-fade" : ""}>{children}</main>

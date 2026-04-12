@@ -8,7 +8,8 @@
       "Bash(python3 -c \":*)",
       "Bash(node -e \"const d = JSON.parse\\(require\\(''fs''\\).readFileSync\\(''C:/Users/Monolith/.claude.json''\\)\\); console.log\\(Object.keys\\(d\\).join\\(''\\\\n''\\)\\)\")",
       "mcp__sequential-thinking__sequentialthinking",
-      "WebFetch(domain:www.tsamusic.ge)"
+      "WebFetch(domain:www.tsamusic.ge)",
+      "Bash(npm install:*)"
     ]
   }
 }

@@ -1,5 +1,5 @@
 ---
-title: "The Making of Worldline:Dead"
+title: "The Making of Worldline;ine"
 date: "2024-03-15"
 slug: "the-making-of-worldline-dead"
 lang: "eng"
@@ -11,15 +11,15 @@ coverImage: "sepia_three.jpg"
 rating: "8.5"
 ratingNote: "An essential document"
 albumArtist: "Project Monolith"
-albumName: "Worldline:Dead"
+albumName: "Worldlin;Dead"
 albumYear: "2018"
 albumGenre: "Instrumental-Rock · Jazz"
 pullquote: "Making this album taught us to trust the muse and let it take center."
 ---
 
-# The Making of Worldline:Dead
+# The Making of Worldline;Dead
 
-When we first started working on what would become *Worldline:Dead* in 2013, the only thing at our hands was the title track, then-called *Epilogue One*. For 5 years, this track sat untouched, until early 2018, when it became a starting point of something more. What started as a singular track meant to end something that hadn't even started evolved into a fully realized conceptual album over the course of six months. 
+When we first started working on what would become *Worldline;Dead* in 2013, the only thing at our hands was the title track, then-called *Epilogue One*. For 5 years, this track sat untouched, until early 2018, when it became a starting point of something more. What started as a singular track meant to end something that hadn't even started evolved into a fully realized conceptual album over the course of six months. 
 
 ## The Concept
 
@@ -37,7 +37,7 @@ There is a certain unpredictability to this album. Some sections of it drag alon
 
 **The Impact** — While other tracks in *Worldline;Dead* might seem rather scattered, this one emerges as the most thematically cohesive, having its drama and purposeful suspense last till the very last second.
 
-**Worldline:Dead (title track)** — While predating all the other tracks on this album by at least 5 years, the title track is meant to be a full stop, a halt to all music by all-consuming static. A definitive end of the worldline. 
+**Worldline;Dead (title track)** — While predating all the other tracks on this album by at least 5 years, the title track is meant to be a full stop, a halt to all music by all-consuming static. A definitive end of the worldline. 
 
 ## Mixing and Mastering
 

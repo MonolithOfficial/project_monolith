@@ -612,3 +612,176 @@
   font-size: 9px;
   color: rgba(248, 248, 255, 0.25);
 }
+
+// ─── Light Mode Overrides ─────────────────────────────────────────────────────
+
+[data-theme="light"] {
+  .post-hero__gradient {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.27) 0%, rgba(255, 255, 255, 0.94) 100%);
+  }
+
+  .post-hero__cat {
+    color: rgba(117, 117, 133, 0.85);
+  }
+
+  .post-hero__back {
+    color: rgba(26, 26, 42, 0.55);
+
+    &:hover {
+      color: rgba(26, 26, 42, 0.85);
+    }
+  }
+
+  .post-hero__title {
+    color: #1a1a2a;
+  }
+
+  .post-hero__meta {
+    span {
+      color: rgba(26, 26, 42, 0.5);
+    }
+
+    .meta-dot {
+      color: rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .post-body-wrap {
+    background: #ffffff;
+  }
+
+  .post-lede {
+    color: rgba(26, 26, 42, 0.85);
+  }
+
+  .post-divider {
+    background: rgba(0, 0, 0, 0.08);
+  }
+
+  .post-md-content {
+    color: rgba(26, 26, 42, 0.95);
+
+    h1, h2, h3 {
+      color: #1a1a2a;
+    }
+
+    p {
+      color: rgba(26, 26, 42, 0.95);
+    }
+
+    strong {
+      color: rgba(26, 26, 42, 0.9);
+    }
+
+    em {
+      color: rgba(26, 26, 42, 0.7);
+    }
+
+    a {
+      color: rgba(117, 117, 133, 0.8);
+      &:hover { color: #757585; }
+    }
+
+    blockquote {
+      &::before {
+        background: #757585;
+      }
+
+      p {
+        color: #1a1a2a;
+      }
+    }
+  }
+
+  .post-pullquote__rule {
+    background: #757585;
+  }
+
+  .post-pullquote__text {
+    color: #1a1a2a;
+  }
+
+  .post-rating-mobile {
+    background: #f8f8fa;
+  }
+
+  .post-rating-score {
+    color: #757585;
+  }
+
+  .post-rating-label {
+    color: rgba(26, 26, 42, 0.35);
+  }
+
+  .post-rating-note {
+    color: rgba(26, 26, 42, 0.55);
+  }
+
+  .post-sidebar__rating {
+    background: #f8f8fa;
+  }
+
+  .post-sidebar__rating-score {
+    color: #757585;
+  }
+
+  .post-sidebar__rating-label {
+    color: rgba(26, 26, 42, 0.35);
+  }
+
+  .post-sidebar__rating-note {
+    color: rgba(26, 26, 42, 0.55);
+  }
+
+  .post-sidebar__info-label {
+    color: rgba(26, 26, 42, 0.35);
+  }
+
+  .post-sidebar__info-rule {
+    background: rgba(117, 117, 133, 0.3);
+  }
+
+  .post-sidebar__info-row {
+    color: rgba(26, 26, 42, 0.6);
+
+    strong {
+      color: rgba(26, 26, 42, 0.35);
+    }
+  }
+
+  .post-related {
+    background: #f5f5f7;
+  }
+
+  .post-related__label {
+    color: rgba(26, 26, 42, 0.35);
+  }
+
+  .post-related__rule {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .post-related-card {
+    background: #ffffff;
+
+    &:hover {
+      background: #efefef;
+    }
+  }
+
+  .post-related-card__img {
+    background-color: #ddd;
+  }
+
+  .post-related-card__cat {
+    color: rgba(117, 117, 133, 0.8);
+  }
+
+  .post-related-card__title {
+    color: #1a1a2a;
+  }
+
+  .post-related-card__meta {
+    color: rgba(26, 26, 42, 0.4);
+  }
+}

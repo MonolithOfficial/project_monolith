@@ -102,7 +102,7 @@
 
 .blogs-featured__tag {
   font-family: 'Inter', sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 4px;
   color: #000;
@@ -122,7 +122,7 @@
 
 .blogs-featured__label-text {
   font-family: 'Inter', sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 4px;
   color: rgba(248, 248, 255, 0.2);
   text-transform: uppercase;
@@ -254,7 +254,7 @@
 
 .blogs-featured__cta {
   font-family: 'Inter', sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 3px;
   color: rgba(255, 239, 57, 0.8);
@@ -292,14 +292,14 @@
 
 .blogs-latest__label {
   font-family: 'Inter', sans-serif;
-  font-size: 10px;
+  font-size: 13px;
   letter-spacing: 5px;
   color: rgba(248, 248, 255, 0.2);
   text-transform: uppercase;
   white-space: nowrap;
 
   @media (max-width: 768px) {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 
@@ -474,5 +474,153 @@
 
   @media (max-width: 768px) {
     font-size: 9px;
+  }
+}
+
+// ─── Light Mode Overrides ─────────────────────────────────────────────────────
+
+[data-theme="light"] {
+  .blogs-hero {
+    background: linear-gradient(180deg, #f0f0f2 0%, #f7f7f8 100%);
+  }
+
+  .blogs-hero__eyebrow {
+    color: rgba(117, 117, 133, 0.75);
+  }
+
+  .blogs-hero__title {
+    color: #1a1a2a;
+  }
+
+  .blogs-hero__rule {
+    background: #757585;
+  }
+
+  .blogs-hero__sub {
+    color: rgba(26, 26, 42, 0.5);
+  }
+
+  .blogs-featured {
+    background: #ffffff;
+  }
+
+  .blogs-featured__sep {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .blogs-featured__label-text {
+    color: rgba(26, 26, 42, 0.35);
+  }
+
+  .blogs-featured__tag {
+    background: #757585;
+    color: #fff;
+  }
+
+  .blogs-featured__cat {
+    color: rgba(117, 117, 133, 0.9);
+  }
+
+  .blogs-featured__card {
+    background: #e8e8ea;
+
+    &:hover {
+      background: #dededf;
+    }
+  }
+
+  .blogs-featured__img {
+    background-color: #ccc;
+
+    &::after {
+      background: linear-gradient(90deg, transparent 0%, rgba(232, 232, 234, 0.85) 100%);
+    }
+
+    @media (max-width: 1200px) {
+      &::after {
+        background: linear-gradient(180deg, transparent 0%, rgba(232, 232, 234, 0.85) 100%);
+      }
+    }
+  }
+
+  .blogs-featured__title {
+    color: #1a1a2a;
+  }
+
+  .blogs-featured__excerpt {
+    color: rgba(26, 26, 42, 0.6);
+  }
+
+  .blogs-featured__author {
+    color: rgba(26, 26, 42, 0.4);
+  }
+
+  .blogs-featured__dot {
+    color: rgba(0, 0, 0, 0.15);
+  }
+
+  .blogs-featured__date {
+    color: rgba(26, 26, 42, 0.35);
+  }
+
+  .blogs-featured__cta {
+    color: rgba(117, 117, 133, 0.85);
+  }
+
+  .blogs-latest {
+    background: #ffffff;
+  }
+
+  .blogs-latest__label {
+    color: rgba(26, 26, 42, 0.35);
+  }
+
+  .blogs-latest__rule {
+    background: rgba(0, 0, 0, 0.08);
+  }
+
+  .blogs-latest__empty {
+    color: rgba(26, 26, 42, 0.35);
+  }
+
+  .blog-card {
+    background: #ffffff;
+
+    &:hover {
+      background: #f4f4f4;
+    }
+  }
+
+  .blog-card__img {
+    background-color: #ddd;
+  }
+
+  .blog-card__cat {
+    color: rgba(117, 117, 133, 0.8);
+  }
+
+  .blog-card__title {
+    color: #1a1a2a;
+  }
+
+  .blog-card__meta {
+    color: rgba(26, 26, 42, 0.4);
+  }
+
+  .blogs-load-more__btn {
+    color: rgba(26, 26, 42, 0.55);
+    background: #e8e8ea;
+
+    &:hover {
+      color: rgba(26, 26, 42, 0.9);
+      background: #d8d8da;
+    }
+  }
+
+  // GEO overrides in light mode
+  [data-lang="GEO"] & {
+    .blogs-hero__eyebrow {
+      color: rgba(117, 117, 133, 0.8);
+    }
   }
 }
